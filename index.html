@@ -87,50 +87,19 @@
     .portfolio-intro p{color:var(--dim);max-width:380px;font-size:.9rem;line-height:1.7}
 
     /* FEATURED PROJECTS row */
-    .featured-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:1.25rem}
+    .featured-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
 
     .f-item{position:relative;overflow:hidden;cursor:pointer;background:var(--card);border:1px solid var(--border);transition:border-color .3s}
     .f-item:hover{border-color:rgba(0,244,204,.4)}
     .f-img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;transition:transform .55s ease,filter .4s;filter:grayscale(15%) brightness(.82)}
-    .f-item:hover .f-img{transform:scale(1.04);filter:grayscale(0%) brightness(1)}
-    .f-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,16,.97) 0%,rgba(8,8,16,.15) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:2rem;opacity:0;transition:opacity .35s}
+    .f-item:hover .f-img{transform:scale(1.04);filter:grayscale(0%) brightness(.72) blur(4px)}
+    .f-overlay{position:absolute;inset:0;background:rgba(8,8,16,.62);backdrop-filter:blur(3px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;opacity:0;transition:opacity .35s}
     .f-item:hover .f-overlay{opacity:1}
     .f-label{position:absolute;top:1rem;left:1rem;background:rgba(8,8,16,.78);backdrop-filter:blur(8px);border:1px solid var(--border);padding:.3rem .75rem;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--dim)}
-    .f-overlay h3{font-family:'Playfair Display',serif;font-size:1.15rem;margin-bottom:.3rem;transform:translateY(8px);transition:transform .35s}
+    .f-overlay h3{background:var(--black);color:var(--white);border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:.45rem 1rem;font-family:'Inter',sans-serif;font-size:.9rem;font-weight:700;line-height:1.1;margin-bottom:.55rem;transform:translateY(8px);transition:transform .35s}
     .f-item:hover .f-overlay h3{transform:translateY(0)}
     .f-overlay span{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);display:block;transform:translateY(8px);transition:transform .35s .05s}
     .f-item:hover .f-overlay span{transform:translateY(0)}
-    .f-coming{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;background:var(--card)}
-    .f-coming-icon{font-size:2rem;opacity:.12}
-    .f-coming-text{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--dim)}
-    .f-coming-label{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);margin-top:.25rem}
-    .f-zoom{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.6);opacity:0;transition:opacity .3s,transform .3s;font-size:1.5rem;color:var(--cyan);pointer-events:none}
-    .f-item:hover .f-zoom{opacity:1;transform:translate(-50%,-50%) scale(1)}
-
-    /* SECONDARY grid */
-    .secondary-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:1.25rem}
-    .p-item{position:relative;overflow:hidden;cursor:pointer;background:var(--card);border:1px solid var(--border);transition:border-color .3s}
-    .p-item:hover{border-color:rgba(0,244,204,.35)}
-    .p-item:nth-child(1){grid-column:span 5}
-    .p-item:nth-child(2){grid-column:span 4}
-    .p-item:nth-child(3){grid-column:span 3}
-    .p-item:nth-child(4){grid-column:span 3}
-    .p-item:nth-child(5){grid-column:span 5}
-    .p-item:nth-child(6){grid-column:span 4}
-    .p-item:nth-child(7){grid-column:span 4}
-    .p-item:nth-child(8){grid-column:span 4}
-    .p-item:nth-child(9){grid-column:span 4}
-    .p-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .55s ease,filter .4s;filter:grayscale(15%) brightness(.82)}
-    .p-item:hover .p-img{transform:scale(1.04);filter:grayscale(0%) brightness(1)}
-    .p-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,16,.97) 0%,rgba(8,8,16,.2) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;opacity:0;transition:opacity .35s}
-    .p-item:hover .p-overlay{opacity:1}
-    .p-overlay h3{font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:.25rem;transform:translateY(8px);transition:transform .35s}
-    .p-item:hover .p-overlay h3{transform:translateY(0)}
-    .p-overlay span{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);display:block;transform:translateY(8px);transition:transform .35s .05s}
-    .p-item:hover .p-overlay span{transform:translateY(0)}
-    .p-tag{position:absolute;top:1rem;left:1rem;background:rgba(8,8,16,.78);backdrop-filter:blur(8px);border:1px solid var(--border);padding:.25rem .65rem;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--dim)}
-    .p-zoom{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.6);opacity:0;transition:opacity .3s,transform .3s;font-size:1.4rem;color:var(--cyan);pointer-events:none}
-    .p-item:hover .p-zoom{opacity:1;transform:translate(-50%,-50%) scale(1)}
 
     /* ABOUT */
     #about{background:var(--mid);padding:7rem 4rem}
@@ -181,31 +150,6 @@
     .footer-links a{color:var(--dim);text-decoration:none;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
     .footer-links a:hover{color:var(--white)}
 
-    /* MODAL */
-    .modal-backdrop{position:fixed;inset:0;z-index:1000;background:rgba(8,8,16,.95);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s;padding:2rem}
-    .modal-backdrop.open{opacity:1;pointer-events:all}
-    .modal{background:var(--card);border:1px solid rgba(0,244,204,.15);width:100%;max-width:980px;max-height:90vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;transform:translateY(24px) scale(.97);transition:transform .35s;position:relative}
-    .modal-backdrop.open .modal{transform:translateY(0) scale(1)}
-    .modal::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--cyan),var(--pink))}
-    .modal-gallery{overflow:hidden;position:relative;background:var(--black);min-height:340px}
-    .modal-inner{display:flex;height:100%;transition:transform .4s ease}
-    .modal-gallery-img{flex-shrink:0;width:100%;height:100%;object-fit:contain;background:var(--black)}
-    .modal-nav{position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);display:flex;gap:.5rem;align-items:center}
-    .modal-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:background .2s,transform .2s}
-    .modal-dot.active{background:var(--cyan);transform:scale(1.3)}
-    .modal-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(8,8,16,.7);border:1px solid var(--border);color:var(--white);width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.9rem;transition:border-color .2s;z-index:2}
-    .modal-arrow:hover{border-color:var(--cyan)}
-    .modal-arrow.prev{left:.75rem}
-    .modal-arrow.next{right:.75rem}
-    .modal-info{padding:2.5rem;overflow-y:auto;display:flex;flex-direction:column;gap:1.25rem}
-    .modal-category{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--cyan)}
-    .modal-title{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;line-height:1.15}
-    .modal-desc{color:var(--dim);font-size:.875rem;line-height:1.8;font-weight:300}
-    .modal-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.25rem}
-    .modal-tag{border:1px solid rgba(0,244,204,.2);padding:.3rem .85rem;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
-    .modal-close{position:absolute;top:1rem;right:1rem;z-index:10;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(8,8,16,.8);border:1px solid var(--border);color:var(--dim);cursor:pointer;font-size:1.1rem;transition:border-color .2s,color .2s}
-    .modal-close:hover{border-color:var(--cyan);color:var(--white)}
-
     /* REVEAL */
     .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
     .reveal.visible{opacity:1;transform:translateY(0)}
@@ -217,16 +161,11 @@
       #stats{padding:4rem 1.5rem}
       .stats-grid{grid-template-columns:repeat(2,1fr)}
       .featured-grid{grid-template-columns:1fr}
-      .secondary-grid{grid-template-columns:1fr 1fr}
-      .p-item:nth-child(n){grid-column:span 1}
       .about-grid,.contact-wrapper{grid-template-columns:1fr;gap:3rem}
       .about-badge{right:0;bottom:-1rem}
       footer{flex-direction:column;text-align:center;padding:2rem 1.5rem}
       .footer-links{justify-content:center}
       .hero-scroll-hint{display:none}
-      .modal{grid-template-columns:1fr;max-height:95vh}
-      .modal-gallery{min-height:260px}
-      .modal-info{padding:1.5rem}
     }
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
   </style>
@@ -300,104 +239,35 @@
     <!-- Lime Riot: click goes to case study page -->
     <a href="lime-riot.html" class="f-item reveal" style="text-decoration:none">
       <div class="f-label" style="color:#CAFF4C;border-color:rgba(202,255,76,.3)">Featured · AI Brand</div>
-      <img class="f-img" src="https://drive.google.com/thumbnail?id=1UOu4FqBi2a36iKapDDvmXE0QEEZ_jrGZ&sz=w900" alt="Lime Riot Energy"/>
+      <img class="f-img" src="assets/images/Lime%20riot/lime%20riot%20-%20social%20media%20-%2001.png" alt="Lime Riot Energy"/>
       <div class="f-overlay">
         <h3>Lime Riot Energy</h3>
         <span>Brand Identity · Packaging · AI Campaign</span>
       </div>
-      <div class="f-zoom">→</div>
     </a>
 
     <!-- Veero: links to case study -->
     <a href="veero.html" class="f-item reveal" style="transition-delay:.1s;text-decoration:none">
       <div class="f-label" style="color:#D9A89A;border-color:rgba(196,137,122,.3)">Featured · In Production</div>
-      <img class="f-img" src="https://images.unsplash.com/photo-1570194065650-d99fb4b38db6?w=700&q=80&fit=crop" alt="Veero skincare brand" style="filter:grayscale(20%) brightness(.75);aspect-ratio:3/4"/>
+      <img class="f-img" src="assets/images/Veero/veero%20-%20packaging%20-%2005.png" alt="Veero skincare brand" style="filter:grayscale(20%) brightness(.75);aspect-ratio:3/4"/>
       <div class="f-overlay">
         <h3>Veero</h3>
         <span>Skincare Brand · Packaging · Identity</span>
       </div>
-      <div class="f-zoom">→</div>
     </a>
 
-    <!-- Fast food brand: coming soon -->
-    <div class="f-item reveal" style="transition-delay:.2s;cursor:default">
+    <!-- Fanny Flan: links to case study -->
+    <a href="fanny-flan.html" class="f-item reveal" style="transition-delay:.2s;text-decoration:none">
       <div class="f-label">Featured · Coming Soon</div>
-      <div class="f-coming">
-        <div class="f-coming-icon">◎</div>
-        <p class="f-coming-text">Case study in progress</p>
-        <p class="f-coming-label">Fanny Flan</p>
+      <img class="f-img" src="assets/images/Fanny%20Flan/fanny%20flan%20-%20packaging%20-%2001.png" alt="Fanny Flan"/>
+      <div class="f-overlay">
+        <h3>Fanny Flan</h3>
+        <span>Brand Identity · Packaging · Character System</span>
       </div>
-    </div>
+    </a>
 
   </div>
 
-  <!-- SECONDARY: rest of portfolio -->
-  <div class="secondary-grid" id="portfolio-grid">
-
-    <div class="p-item reveal" data-project="0">
-      <div class="p-tag">Packaging</div>
-      <img class="p-img" src="https://drive.google.com/thumbnail?id=1XNRxZMWySN-J9u0VX6v2wcsFlVcjo9Vn&sz=w800" alt="Packaging and proof systems" loading="lazy"/>
-      <div class="p-overlay"><h3>Packaging & Proof Systems</h3><span>Packaging · Proofing · Production</span></div>
-      <div class="p-zoom">⊕</div>
-    </div>
-
-    <div class="p-item reveal" style="transition-delay:.06s" data-project="1">
-      <div class="p-tag">Kit Renders</div>
-      <img class="p-img" src="https://drive.google.com/thumbnail?id=1nuiz6F7UvybNbTwayZy0LOc4dgtBaFU4&sz=w800" alt="Automated kit renders" loading="lazy"/>
-      <div class="p-overlay"><h3>Automated Kit Render System</h3><span>Pipeline · Automation · Scale</span></div>
-      <div class="p-zoom">⊕</div>
-    </div>
-
-    <div class="p-item reveal" style="transition-delay:.1s" data-project="2">
-      <div class="p-tag">Product</div>
-      <img class="p-img" src="https://drive.google.com/thumbnail?id=1JmH-tjuqvFD83kL8JrBVDEMP6ub0Q2XC&sz=w700" alt="RUPT product renders" loading="lazy"/>
-      <div class="p-overlay"><h3>RUPT Product Visualization</h3><span>Product Renders · 3D · Catalog</span></div>
-      <div class="p-zoom">⊕</div>
-    </div>
-
-    <div class="p-item reveal" style="transition-delay:.13s" data-project="3">
-      <div class="p-tag">Client Work</div>
-      <img class="p-img" src="https://drive.google.com/thumbnail?id=17Ewy_mwKuxQUiu-bh0ZwMPlu-_zuqQmY&sz=w700" alt="Custom client renders" loading="lazy"/>
-      <div class="p-overlay"><h3>Custom Client Renders</h3><span>Branded Merchandise · Mockups</span></div>
-      <div class="p-zoom">⊕</div>
-    </div>
-
-    <div class="p-item reveal" style="transition-delay:.16s" data-project="4">
-      <div class="p-tag">Freelance · Industrial</div>
-      <img class="p-img" src="https://drive.google.com/thumbnail?id=1glvudwPM0bM33vXdRmNHaIsjp3uieD-D&sz=w800" alt="Mindstone wearable" loading="lazy"/>
-      <div class="p-overlay"><h3>Mindstone Wearable Device</h3><span>Industrial Design · UX · Healthcare</span></div>
-      <div class="p-zoom">⊕</div>
-    </div>
-
-    <div class="p-item reveal" style="transition-delay:.19s" data-project="5">
-      <div class="p-tag">Freelance · 3D</div>
-      <img class="p-img" src="https://drive.google.com/thumbnail?id=1Sqs09IwIAh0IRWWB7TZQ5Zukz4wMeYWa&sz=w700" alt="Coffee machine" loading="lazy"/>
-      <div class="p-overlay"><h3>Coffee Machine Design</h3><span>Industrial Design · 3D Render</span></div>
-      <div class="p-zoom">⊕</div>
-    </div>
-
-    <div class="p-item reveal" style="transition-delay:.22s" data-project="6">
-      <div class="p-tag">Freelance · Industrial</div>
-      <img class="p-img" src="https://drive.google.com/thumbnail?id=1Xv7_bqhO3yrbgkmmTvzyh5CVhOz2lpxZ&sz=w700" alt="FANSTOVE" loading="lazy"/>
-      <div class="p-overlay"><h3>FANSTOVE Outdoor Product</h3><span>Industrial Design · 3D · Freelance</span></div>
-      <div class="p-zoom">⊕</div>
-    </div>
-
-    <div class="p-item reveal" style="transition-delay:.25s" data-project="7">
-      <div class="p-tag">Freelance · Packaging</div>
-      <img class="p-img" src="https://drive.google.com/thumbnail?id=1snntW5QxLJHEJVhzT6s-LoQwvJfOx32M&sz=w700" alt="Xania cosmetics" loading="lazy"/>
-      <div class="p-overlay"><h3>Xania Cosmetics</h3><span>Packaging Design · Industrial · Freelance</span></div>
-      <div class="p-zoom">⊕</div>
-    </div>
-
-    <div class="p-item reveal" style="transition-delay:.28s" data-project="8">
-      <div class="p-tag">Freelance · Industrial</div>
-      <img class="p-img" src="https://drive.google.com/thumbnail?id=1N7fYlNai8sSfQsgwYQAXFoNNMTYSCY4i&sz=w700" alt="Modular cabinet" loading="lazy"/>
-      <div class="p-overlay"><h3>Modular Cabinet System</h3><span>Industrial Design · Furniture · Freelance</span></div>
-      <div class="p-zoom">⊕</div>
-    </div>
-
-  </div>
 </section>
 
 <section id="about">
@@ -405,7 +275,7 @@
   <div class="about-grid">
     <div class="about-visual reveal">
       <div class="about-img-wrap">
-        <img src="https://drive.google.com/thumbnail?id=1-O9Pe6osJndtrPFzi9e-hXKINHGQYVmE&sz=w800" alt="Chona"/>
+        <img src="assets/images/chona_pic.png" alt="Chona"/>
       </div>
       <div class="about-badge">Creative<br/>Director</div>
     </div>
@@ -442,7 +312,7 @@
       <div class="newsletter-form">
         <input type="text" placeholder="Your name"/>
         <input type="email" placeholder="Your email"/>
-        <button type="button">Subscribe</button>
+        <button type="button">Contact Me</button>
       </div>
     </div>
   </div>
@@ -458,141 +328,7 @@
   </div>
 </footer>
 
-<!-- MODAL -->
-<div class="modal-backdrop" id="modal-backdrop">
-  <div class="modal" id="modal">
-    <button class="modal-close" id="modal-close">✕</button>
-    <div class="modal-gallery">
-      <div class="modal-inner" id="modal-inner"></div>
-      <button class="modal-arrow prev" id="modal-prev">‹</button>
-      <button class="modal-arrow next" id="modal-next">›</button>
-      <div class="modal-nav" id="modal-dots"></div>
-    </div>
-    <div class="modal-info">
-      <p class="modal-category" id="modal-cat"></p>
-      <h3 class="modal-title" id="modal-title"></h3>
-      <p class="modal-desc" id="modal-desc"></p>
-      <div class="modal-tags" id="modal-tags"></div>
-    </div>
-  </div>
-</div>
-
 <script>
-const PROJECTS = [
-  {
-    title:"Packaging and Proof Systems",
-    category:"Promotional Products · RUPT",
-    desc:"End-to-end packaging design and proof system for RUPT's branded merchandise line. Print-ready artwork, die-lines, and a proofing workflow that covers custom boxes, inserts, and branded packaging for 10+ SKUs.",
-    tags:["Packaging","Artwork","Production","Print-Ready"],
-    images:["https://drive.google.com/thumbnail?id=1XNRxZMWySN-J9u0VX6v2wcsFlVcjo9Vn&sz=w1200","https://drive.google.com/thumbnail?id=1fA_TzOfx_l9Uk0j2uu4ethcDmYRRN7Zs&sz=w1200","https://drive.google.com/thumbnail?id=109Qm3IST719hNemISteDyDh7rBfmHa-R&sz=w1200","https://drive.google.com/thumbnail?id=1mCODB4svIwTGAK9BDKLViLNCy8B0sky0&sz=w1200","https://drive.google.com/thumbnail?id=1uBGr6QRJhkB6J8Qv1eplDMASpSkH2f6O&sz=w1200"]
-  },
-  {
-    title:"Automated Kit Render System",
-    category:"RUPT · Creative Systems",
-    desc:"A scripted pipeline that generates branded kit presentation renders at scale. Client-ready visuals in a fraction of manual production time, enabling the team to process dozens of kit configurations per week.",
-    tags:["Automation","Pipeline","3D Render","Scale"],
-    images:["https://drive.google.com/thumbnail?id=1nuiz6F7UvybNbTwayZy0LOc4dgtBaFU4&sz=w1200","https://drive.google.com/thumbnail?id=1mt-iwfRbN3yI46ykQFi5mUdMinxtfmHi&sz=w1200","https://drive.google.com/thumbnail?id=1aN2CxVhKilxYDqmxZRzi4bkPaah2qjQ0&sz=w1200","https://drive.google.com/thumbnail?id=17Ewy_mwKuxQUiu-bh0ZwMPlu-_zuqQmY&sz=w1200","https://drive.google.com/thumbnail?id=1cFyHEyJmw7w6t7_QuOF4lw-H1ylUmW4N&sz=w1200"]
-  },
-  {
-    title:"RUPT Product Visualization",
-    category:"RUPT · Catalog and Ecommerce",
-    desc:"Studio-quality white-background product renders for RUPT's full catalog. Bags, tech accessories, and lifestyle products photographed and rendered to a strict brand grid and lighting system for ecommerce and print.",
-    tags:["Product Renders","White Background","Catalog","Ecommerce","3D"],
-    images:["https://drive.google.com/thumbnail?id=1JmH-tjuqvFD83kL8JrBVDEMP6ub0Q2XC&sz=w1200","https://drive.google.com/thumbnail?id=1gTgEQIPDMKZ2K2-BuDpMUamfqY2w3Ylo&sz=w1200","https://drive.google.com/thumbnail?id=12dTopSyQBkwtaMQnIYWacJ1A5ZITt3N2&sz=w1200","https://drive.google.com/thumbnail?id=1lhJlBz-tnJmzqIB39BdtHd5_Da_oOIqR&sz=w1200","https://drive.google.com/thumbnail?id=14Tyq6YVbvkrNECOU12gyifNIONnGdXcA&sz=w1200"]
-  },
-  {
-    title:"Custom Client Renders",
-    category:"RUPT · Client Mockups",
-    desc:"Branded product mockups for enterprise clients including Intermountain Health and United Prairie. Each render applies the client logo and colorway to the RUPT product line as pre-production approval assets.",
-    tags:["Client Mockups","Branded Merchandise","B2B"],
-    images:["https://drive.google.com/thumbnail?id=17Ewy_mwKuxQUiu-bh0ZwMPlu-_zuqQmY&sz=w1200","https://drive.google.com/thumbnail?id=1cFyHEyJmw7w6t7_QuOF4lw-H1ylUmW4N&sz=w1200","https://drive.google.com/thumbnail?id=1UhaapuA4AG9Bw9OvtZ14EpHsb_th_qbR&sz=w1200","https://drive.google.com/thumbnail?id=1JsR5smvfwdUY08OnlXGmInpKM6nz70dn&sz=w1200"]
-  },
-  {
-    title:"Mindstone Wearable Device",
-    category:"Freelance · Industrial Design",
-    desc:"Physical and UX concept for Mindstone, a smart wearable for parents of children with anxiety disorders. Biometric sensing (GSR, HR, temperature) paired with a guided breathing app. Deliverables: CMF, industrial design concepts, and presentation boards.",
-    tags:["Wearable","Healthcare","Industrial Design","UX","Freelance"],
-    images:["https://drive.google.com/thumbnail?id=1glvudwPM0bM33vXdRmNHaIsjp3uieD-D&sz=w1200","https://drive.google.com/thumbnail?id=1U0Grg7Z_ShhFHO0XNWjKnk_Awekqqcjx&sz=w1200","https://drive.google.com/thumbnail?id=17hnTcsdfb7eot_28k7J_JRlLcbzptQJP&sz=w1200","https://drive.google.com/thumbnail?id=1hdqCZVZ2JVebCxbEFif3JwRaf1rdpAcK&sz=w1200"]
-  },
-  {
-    title:"Coffee Machine Design",
-    category:"Freelance · Industrial Design",
-    desc:"Compact home coffee machine. Form language, ergonomics, and material selection balancing premium aesthetics with manufacturability. Output: 3D renders, exploded views, and a client presentation.",
-    tags:["Industrial Design","3D Render","Consumer Product","Freelance"],
-    images:["https://drive.google.com/thumbnail?id=1Sqs09IwIAh0IRWWB7TZQ5Zukz4wMeYWa&sz=w1200","https://drive.google.com/thumbnail?id=1LpqMP21J2XHlJv33PCsR1BeTTUUExle6&sz=w1200","https://drive.google.com/thumbnail?id=1xiwe5dVnCJATF_y7gHTR-nJWXPEuz5oy&sz=w1200","https://drive.google.com/thumbnail?id=1Pz62NWHVmLP4D7JHmN7xDwrB6IcsxMWQ&sz=w1200"]
-  },
-  {
-    title:"FANSTOVE Outdoor Product",
-    category:"Freelance · Industrial Design",
-    desc:"Outdoor fan-stove hybrid. Structural integrity, heat management, and user-safe interaction for a portable cooking and ventilation device. Output: CAD-ready models and presentation renders.",
-    tags:["Industrial Design","Outdoor","3D CAD","Freelance"],
-    images:["https://drive.google.com/thumbnail?id=1Xv7_bqhO3yrbgkmmTvzyh5CVhOz2lpxZ&sz=w1200","https://drive.google.com/thumbnail?id=1zDhA5a885aOQWDHXxeWGjw--f_FtnRNN&sz=w1200","https://drive.google.com/thumbnail?id=1jyOfLIlAGhe9UDpsKISX-ukZRNOAAMgK&sz=w1200","https://drive.google.com/thumbnail?id=1_4Bb-3x_xYs39oBs3-sCFnTwHRDyTbr7&sz=w1200"]
-  },
-  {
-    title:"Xania Cosmetics Packaging",
-    category:"Freelance · Packaging",
-    desc:"Skincare line packaging for Xania Cosmetics. Label system, bottle hierarchy, and retail shelf positioning. The visual language bridges clinical authority with approachable femininity.",
-    tags:["Packaging","Cosmetics","Label Design","Freelance"],
-    images:["https://drive.google.com/thumbnail?id=1snntW5QxLJHEJVhzT6s-LoQwvJfOx32M&sz=w1200","https://drive.google.com/thumbnail?id=1arggq59jHoOOnlBhicLG21_1Swp7gE7J&sz=w1200","https://drive.google.com/thumbnail?id=1QQ4S3gbTc2LcHZiKlkddaCUFydplsUzv&sz=w1200","https://drive.google.com/thumbnail?id=1Xz3VY8l6MEOmYI9IuDZnpcjVCnB8aBq-&sz=w1200"]
-  },
-  {
-    title:"Modular Cabinet System",
-    category:"Freelance · Furniture",
-    desc:"Modular residential cabinet system with tool-less assembly and interchangeable panel configurations. Wood veneer and powder-coated steel palette. Output: full 3D model, technical drawings, and production documentation.",
-    tags:["Furniture","Modular","Industrial Design","3D","Freelance"],
-    images:["https://drive.google.com/thumbnail?id=1N7fYlNai8sSfQsgwYQAXFoNNMTYSCY4i&sz=w1200","https://drive.google.com/thumbnail?id=196QBUz8M1kR3hvxECpBLtqGYbeRCEdYH&sz=w1200","https://drive.google.com/thumbnail?id=1uJmqoF7bd3TNzAttRNHUC0zls7wDLOF3&sz=w1200","https://drive.google.com/thumbnail?id=1lQIchkVQkBaAyvjuxmAyFaPzj_TRs9UQ&sz=w1200"]
-  }
-];
-
-let cur=0,active=null;
-const backdrop=document.getElementById('modal-backdrop');
-const mInner=document.getElementById('modal-inner');
-const mDots=document.getElementById('modal-dots');
-const mCat=document.getElementById('modal-cat');
-const mTitle=document.getElementById('modal-title');
-const mDesc=document.getElementById('modal-desc');
-const mTags=document.getElementById('modal-tags');
-const mPrev=document.getElementById('modal-prev');
-const mNext=document.getElementById('modal-next');
-
-function openModal(idx){
-  active=PROJECTS[idx]; cur=0;
-  mInner.innerHTML=active.images.map(s=>`<img class="modal-gallery-img" src="${s}" loading="lazy"/>`).join('');
-  const single=active.images.length===1;
-  mPrev.style.display=single?'none':'';
-  mNext.style.display=single?'none':'';
-  mDots.innerHTML=active.images.map((_,i)=>`<div class="modal-dot${i===0?' active':''}" data-i="${i}"></div>`).join('');
-  goTo(0,true);
-  mCat.textContent=active.category;
-  mTitle.textContent=active.title;
-  mDesc.textContent=active.desc;
-  mTags.innerHTML=active.tags.map(t=>`<span class="modal-tag">${t}</span>`).join('');
-  backdrop.classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeModal(){backdrop.classList.remove('open');document.body.style.overflow='';}
-function goTo(i,instant){
-  cur=(i+active.images.length)%active.images.length;
-  if(instant)mInner.style.transition='none';
-  mInner.style.transform=`translateX(-${cur*100}%)`;
-  if(instant)setTimeout(()=>mInner.style.transition='',20);
-  document.querySelectorAll('.modal-dot').forEach((d,j)=>d.classList.toggle('active',j===cur));
-}
-mPrev.addEventListener('click',e=>{e.stopPropagation();goTo(cur-1)});
-mNext.addEventListener('click',e=>{e.stopPropagation();goTo(cur+1)});
-document.getElementById('modal-close').addEventListener('click',closeModal);
-backdrop.addEventListener('click',e=>{if(e.target===backdrop)closeModal()});
-mDots.addEventListener('click',e=>{if(e.target.dataset.i!==undefined)goTo(+e.target.dataset.i)});
-document.addEventListener('keydown',e=>{
-  if(!backdrop.classList.contains('open'))return;
-  if(e.key==='Escape')closeModal();
-  if(e.key==='ArrowLeft')goTo(cur-1);
-  if(e.key==='ArrowRight')goTo(cur+1);
-});
-document.querySelectorAll('.p-item[data-project]').forEach(el=>{
-  el.addEventListener('click',()=>openModal(+el.dataset.project));
-});
-
 // Nav shrink
 const nav=document.getElementById('main-nav');
 window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60),{passive:true});
