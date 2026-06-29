@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lime Riot Energy — Case Study · Chonaverse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --black:#080810;--white:#F2F2EE;
+      --lime:#CAFF4C;--lime2:#A8E63C;--dark:#050d01;
+      --mid:#0E0E18;--card:#12121E;--dim:#5A5A80;--border:rgba(255,255,255,0.07);
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--black);color:var(--white);font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden}
+    ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--black)}::-webkit-scrollbar-thumb{background:var(--lime);border-radius:2px}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 4rem;background:rgba(5,13,1,.88);backdrop-filter:blur(20px);border-bottom:1px solid rgba(202,255,76,.1)}
+    .nav-logo{font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:var(--white);text-decoration:none}
+    .nav-logo span{color:var(--lime)}
+    .nav-back{color:var(--dim);text-decoration:none;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+    .nav-back:hover{color:var(--white)}
+
+    /* HERO */
+    #hero{min-height:100vh;display:flex;align-items:flex-end;padding:8rem 4rem 5rem;position:relative;overflow:hidden;background:var(--dark)}
+    .bg{position:absolute;inset:0;background:radial-gradient(ellipse 120% 80% at 65% 35%,#0d2e00 0%,#030806 60%,var(--black) 100%)}
+    .blob{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;animation:drift 14s ease-in-out infinite alternate}
+    .b1{width:700px;height:700px;background:#1a4a00;top:-30%;right:-10%;opacity:.6}
+    .b2{width:400px;height:400px;background:var(--lime);bottom:-20%;left:-5%;opacity:.07;animation-delay:-7s}
+    @keyframes drift{from{transform:translate(0,0)scale(1)}to{transform:translate(30px,20px)scale(1.06)}}
+    .dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(202,255,76,.06)1px,transparent 1px);background-size:28px 28px;pointer-events:none}
+    .hero-content{position:relative;z-index:1;max-width:820px}
+    .eyebrow{font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;color:var(--lime);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;opacity:0;animation:up .8s .2s forwards}
+    .eyebrow::before{content:'';display:inline-block;width:32px;height:1px;background:var(--lime)}
+    .hero-title{font-family:'Playfair Display',serif;font-size:clamp(4rem,10vw,9rem);font-weight:900;line-height:.88;letter-spacing:-.03em;opacity:0;animation:up .8s .35s forwards}
+    .hero-title .g{color:var(--lime)}
+    .hero-sub{margin-top:1.5rem;font-size:clamp(.9rem,1.4vw,1.05rem);font-weight:300;color:rgba(255,255,255,.4);letter-spacing:.04em;text-transform:uppercase;opacity:0;animation:up .8s .5s forwards}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:3rem;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(202,255,76,.15);opacity:0;animation:up .8s .7s forwards}
+    .meta-item{display:flex;flex-direction:column;gap:.25rem}
+    .meta-label{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--lime);opacity:.7}
+    .meta-val{font-size:.85rem;color:var(--white);font-weight:500}
+    @keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+    /* STRIP */
+    .strip{background:#030a00;padding:2.5rem 0;overflow:hidden;border-top:1px solid rgba(202,255,76,.1);border-bottom:1px solid rgba(202,255,76,.1)}
+    .strip-track{display:flex;gap:1rem;width:max-content;animation:scrollx 35s linear infinite}
+    .strip-track:hover{animation-play-state:paused}
+    .strip-item{flex-shrink:0;width:200px;height:150px;overflow:hidden;border:1px solid rgba(202,255,76,.07)}
+    .strip-item img{width:100%;height:100%;object-fit:cover;filter:brightness(.85);transition:filter .3s}
+    .strip-item:hover img{filter:brightness(1)}
+    @keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    /* SHARED */
+    section{padding:6rem 4rem}
+    .slabel{font-size:.68rem;letter-spacing:.35em;text-transform:uppercase;color:var(--lime);margin-bottom:2.5rem;display:flex;align-items:center;gap:1rem}
+    .slabel::after{content:'';height:1px;background:rgba(202,255,76,.12);max-width:200px;flex:1}
+    h2{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.5vw,3rem);font-weight:700;line-height:1.1;letter-spacing:-.01em}
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    /* BRIEF */
+    #brief{background:var(--mid)}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+    .brief-left h2{margin-bottom:1.25rem}
+    .brief-left p{color:var(--dim);font-size:.9rem;line-height:1.8;font-weight:300;margin-bottom:1rem}
+    .brief-left p strong{color:var(--lime);font-weight:500}
+    .brief-stats{display:flex;flex-direction:column;gap:1px;background:rgba(202,255,76,.08)}
+    .brief-stat{background:var(--mid);padding:1.75rem 2rem;transition:background .2s}
+    .brief-stat:hover{background:var(--card)}
+    .b-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--lime);display:block;line-height:1}
+    .b-desc{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-top:.35rem;display:block}
+
+    /* DESIGN DECISIONS */
+    #design{background:var(--black)}
+    .design-intro{margin-bottom:3.5rem}
+    .design-intro p{color:var(--dim);font-size:.9rem;line-height:1.8;max-width:520px;margin-top:.75rem;font-weight:300}
+    .decisions{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+    .dec{background:var(--card);border:1px solid rgba(202,255,76,.1);padding:2rem;position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
+    .dec:hover{border-color:rgba(202,255,76,.4);transform:translateY(-3px)}
+    .dec::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--lime),var(--lime2));opacity:0;transition:opacity .3s}
+    .dec:hover::before{opacity:1}
+    .dec-n{font-size:.58rem;letter-spacing:.25em;color:var(--lime);opacity:.4;margin-bottom:.85rem;display:block}
+    .dec h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:.65rem;line-height:1.2}
+    .dec p{color:var(--dim);font-size:.83rem;line-height:1.7;font-weight:300}
+    .dec p strong{color:rgba(202,255,76,.8);font-weight:500}
+
+    /* ASSET LIBRARY */
+    #gallery{background:var(--mid);padding:6rem 4rem}
+
+    .cat-block{margin-bottom:5rem}
+    .cat-block:last-child{margin-bottom:0}
+
+    /* Category header */
+    .cat-header{margin-bottom:2rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(202,255,76,.12)}
+    .cat-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--white);margin-bottom:.35rem}
+    .cat-desc{font-size:.82rem;color:var(--dim);font-weight:300;line-height:1.6}
+    .cat-count{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--lime);opacity:.6;margin-bottom:.5rem;display:block}
+
+    /* Thumbnail grid */
+    .thumb-grid{display:flex;flex-wrap:wrap;gap:.75rem}
+    .thumb{width:160px;height:120px;overflow:hidden;cursor:pointer;border:1px solid rgba(202,255,76,.08);flex-shrink:0;position:relative;transition:border-color .25s,transform .25s}
+    .thumb:hover{border-color:rgba(202,255,76,.5);transform:scale(1.03)}
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.82);transition:filter .3s}
+    .thumb:hover img{filter:brightness(1)}
+    .thumb-num{position:absolute;bottom:.3rem;right:.4rem;font-size:.55rem;letter-spacing:.1em;color:rgba(202,255,76,.5);font-weight:600}
+
+    /* wide banner thumbs */
+    .thumb.wide{width:240px}
+
+    /* AI PROCESS */
+    #process{background:var(--black)}
+    .process-img{width:100%;aspect-ratio:3/4;object-fit:cover;border:1px solid rgba(202,255,76,.1);filter:brightness(.82) saturate(.8);transition:filter .4s}
+    .process-img:hover{filter:brightness(1) saturate(1)}
+    .process-right h2{margin-bottom:2rem}
+    .step{display:flex;gap:1.25rem;margin-bottom:1.75rem;padding-bottom:1.75rem;border-bottom:1px solid rgba(202,255,76,.07)}
+    .step:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+    .step-n{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:var(--lime);opacity:.25;flex-shrink:0;line-height:1;width:2.2rem}
+    .step h4{font-size:.82rem;font-weight:600;margin-bottom:.3rem;color:var(--white)}
+    .step p{color:var(--dim);font-size:.83rem;line-height:1.7;font-weight:300}
+    .step p strong{color:rgba(202,255,76,.8);font-weight:500}
+
+    /* CLOSING */
+    #closing{background:var(--dark);position:relative;overflow:hidden;text-align:center;padding:7rem 4rem}
+    #closing::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(202,255,76,.04)1px,transparent 1px);background-size:28px 28px;pointer-events:none}
+    .closing-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
+    .closing-inner h2{margin-bottom:1.25rem}
+    .closing-inner h2 em{color:var(--lime);font-style:normal}
+    .closing-inner p{color:rgba(255,255,255,.45);font-size:.9rem;line-height:1.8;font-weight:300;margin-bottom:.85rem}
+    .closing-inner p strong{color:var(--lime);font-weight:500}
+    .back-btn{display:inline-flex;align-items:center;gap:.75rem;margin-top:2.5rem;color:var(--lime);text-decoration:none;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;border-bottom:1px solid rgba(202,255,76,.3);padding-bottom:2px;transition:border-color .2s}
+    .back-btn:hover{border-color:var(--lime)}
+
+    footer{background:var(--black);padding:2.5rem 4rem;border-top:1px solid rgba(202,255,76,.08);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+    .footer-logo{font-weight:700;font-size:.82rem;letter-spacing:.22em;text-transform:uppercase}
+    .footer-logo span{color:var(--lime)}
+    footer p{color:var(--dim);font-size:.72rem}
+    .footer-back{color:var(--dim);text-decoration:none;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+    .footer-back:hover{color:var(--white)}
+
+    /* LIGHTBOX */
+    .lb{position:fixed;inset:0;z-index:1000;background:rgba(5,13,1,.97);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;padding:2rem}
+    .lb.open{opacity:1;pointer-events:all}
+    .lb img{max-width:90vw;max-height:85vh;object-fit:contain;border:1px solid rgba(202,255,76,.12)}
+    .lb-close{position:fixed;top:1.5rem;right:1.5rem;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(5,13,1,.8);border:1px solid rgba(202,255,76,.2);color:var(--white);cursor:pointer;font-size:1.1rem;transition:border-color .2s,color .2s}
+    .lb-close:hover{border-color:var(--lime);color:var(--lime)}
+    .lb-arrow{position:fixed;top:50%;transform:translateY(-50%);background:rgba(5,13,1,.8);border:1px solid rgba(202,255,76,.15);color:var(--white);width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.2rem;transition:border-color .2s}
+    .lb-arrow:hover{border-color:var(--lime)}
+    .lb-prev{left:1rem}.lb-next{right:1rem}
+
+    @media(max-width:900px){
+      nav{padding:1.1rem 1.5rem}
+      section{padding:4rem 1.5rem}
+      #gallery{padding:4rem 1.5rem}
+      .two-col{grid-template-columns:1fr;gap:2.5rem}
+      .decisions{grid-template-columns:1fr}
+      .thumb{width:120px;height:90px}
+      .thumb.wide{width:180px}
+      .hero-meta{gap:1.5rem}
+      footer{flex-direction:column;text-align:center;padding:2rem 1.5rem}
+    }
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">CHONA<span>VERSE</span></a>
+  <a href="index.html#portfolio" class="nav-back">Back to Portfolio</a>
+</nav>
+
+<section id="hero">
+  <div class="bg"></div>
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="dots"></div>
+  <div class="hero-content">
+    <p class="eyebrow">Brand Identity · Packaging · AI-Directed Campaign</p>
+    <h1 class="hero-title"><span class="g">LIME</span><br/>RIOT</h1>
+    <p class="hero-sub">Charge the chaos. A full brand built entirely with AI.</p>
+    <div class="hero-meta">
+      <div class="meta-item"><span class="meta-label">Discipline</span><span class="meta-val">Brand Identity</span></div>
+      <div class="meta-item"><span class="meta-label">Category</span><span class="meta-val">Energy Drink</span></div>
+      <div class="meta-item"><span class="meta-label">Toolkit</span><span class="meta-val">ChatGPT Image Gen</span></div>
+      <div class="meta-item"><span class="meta-label">Scope</span><span class="meta-val">Brand + Social Campaign</span></div>
+      <div class="meta-item"><span class="meta-label">Assets</span><span class="meta-val">30+ AI outputs</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-track">
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=1UOu4FqBi2a36iKapDDvmXE0QEEZ_jrGZ&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=1ESamlVGY0_FRplOyDWoNdEi7luVap5x5&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=1J0S6pQ6AZbexn5QzIZbhzTZ_ynkwMhrY&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=1hmXQnWZXRvejBxr_ykSMmTPLKoDNSaJB&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=1yw6bYuATxe5CkhcBMyAxhKbBgQA47Rpt&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=1wKnqfAx7IwGOFCP6LHkhXZlFl71pflHE&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=16N1tQxqPhKL1hEQiSVIFoaGqnEOA3Pwg&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=1Vb3c6P31VK3WgR5tB5fBVSZ65z1N23Qh&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=1UOu4FqBi2a36iKapDDvmXE0QEEZ_jrGZ&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=1ESamlVGY0_FRplOyDWoNdEi7luVap5x5&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=1J0S6pQ6AZbexn5QzIZbhzTZ_ynkwMhrY&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=1hmXQnWZXRvejBxr_ykSMmTPLKoDNSaJB&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=1yw6bYuATxe5CkhcBMyAxhKbBgQA47Rpt&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=1wKnqfAx7IwGOFCP6LHkhXZlFl71pflHE&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=16N1tQxqPhKL1hEQiSVIFoaGqnEOA3Pwg&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=1Vb3c6P31VK3WgR5tB5fBVSZ65z1N23Qh&sz=w400" loading="lazy"/></div>
+  </div>
+</div>
+
+<section id="brief">
+  <p class="slabel">Project Brief</p>
+  <div class="two-col">
+    <div class="brief-left reveal">
+      <h2>A challenger brand built for Gen Z from scratch.</h2>
+      <p>Design an energy drink that could compete with Monster and Ghost on shelf, on social, and in a pitch deck. Constraint: <strong>every visual asset had to come from AI generation</strong>, no Illustrator, no Photoshop, no Figma.</p>
+      <p>Target: 18 to 28, gym-adjacent, drawn to brands with attitude. Emotional territory: <strong>controlled chaos</strong>. Ambitious, loud, confident.</p>
+      <p>Full scope: name, wordmark direction, can label design across four variants, texture system, and a social campaign with 30+ assets in five categories.</p>
+    </div>
+    <div class="brief-stats reveal" style="transition-delay:.15s">
+      <div class="brief-stat"><span class="b-num">4</span><span class="b-desc">Can colorway variants</span></div>
+      <div class="brief-stat"><span class="b-num">30+</span><span class="b-desc">AI assets generated and curated</span></div>
+      <div class="brief-stat"><span class="b-num">5</span><span class="b-desc">Asset categories: social, slogans, banners, textures, brand assets</span></div>
+      <div class="brief-stat"><span class="b-num">100%</span><span class="b-desc">AI-generated visuals, zero traditional production</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="design">
+  <p class="slabel">Design Decisions</p>
+  <div class="design-intro reveal">
+    <h2>Four calls that define the brand.</h2>
+    <p>Each decision was made for a specific visual and commercial reason, not aesthetic preference.</p>
+  </div>
+  <div class="decisions">
+    <div class="dec reveal">
+      <span class="dec-n">01</span>
+      <h3>Acid lime on near-black</h3>
+      <p><strong>#CAFF4C on #050d01.</strong> Not standard lime green. An acid, almost yellow-green that reads as high voltage at label scale and from shelf distance. Extreme contrast by design: seen before it is read.</p>
+    </div>
+    <div class="dec reveal" style="transition-delay:.08s">
+      <span class="dec-n">02</span>
+      <h3>Halftone dot texture at 6% opacity</h3>
+      <p><strong>28px dot grid on every can background.</strong> Reference: zines, screenprinting, DIY streetwear. Tactile depth without competing with the wordmark. Reads as texture on screen, would feel physical in print.</p>
+    </div>
+    <div class="dec reveal" style="transition-delay:.12s">
+      <span class="dec-n">03</span>
+      <h3>Condensed grotesque, max weight, tight kerning</h3>
+      <p>No border radius. No gradients except in backlit contexts. The wordmark works at 2 inches on a can and 20 feet on an event backdrop. <strong>Copy follows the same logic: imperatives, not taglines.</strong></p>
+    </div>
+    <div class="dec reveal" style="transition-delay:.16s">
+      <span class="dec-n">04</span>
+      <h3>Four variants with one shared parent</h3>
+      <p>Flagship lime-on-black. Zero sugar reverse white. B Vitamins warm tint. Clean Energy cool offset. <strong>Each variant shifts palette while holding the same label architecture.</strong> Same logic as Celsius and Ghost.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ASSET LIBRARY -->
+<section id="gallery">
+  <p class="slabel">Asset Library</p>
+  <div class="reveal" style="margin-bottom:1rem">
+    <h2>Five categories. One brand system.</h2>
+    <p style="color:var(--dim);font-size:.88rem;margin-top:.75rem;max-width:520px;line-height:1.7;font-weight:300">Click any thumbnail to view full size. Use arrow keys or the arrows in the lightbox to navigate within the category.</p>
+  </div>
+
+  <!-- SOCIAL MEDIA -->
+  <div class="cat-block reveal">
+    <div class="cat-header">
+      <span class="cat-count">10 assets</span>
+      <h3 class="cat-title">Social Media Posts</h3>
+      <p class="cat-desc">In-feed square and portrait formats designed for Instagram. Product hero shots, lifestyle contexts, and campaign call-to-action posts. Each post holds the core acid lime palette and wordmark placement system.</p>
+    </div>
+    <div class="thumb-grid" data-cat="social">
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1UOu4FqBi2a36iKapDDvmXE0QEEZ_jrGZ&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1UOu4FqBi2a36iKapDDvmXE0QEEZ_jrGZ&sz=w400" loading="lazy"/><span class="thumb-num">01</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1ESamlVGY0_FRplOyDWoNdEi7luVap5x5&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1ESamlVGY0_FRplOyDWoNdEi7luVap5x5&sz=w400" loading="lazy"/><span class="thumb-num">02</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1J0S6pQ6AZbexn5QzIZbhzTZ_ynkwMhrY&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1J0S6pQ6AZbexn5QzIZbhzTZ_ynkwMhrY&sz=w400" loading="lazy"/><span class="thumb-num">03</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1hmXQnWZXRvejBxr_ykSMmTPLKoDNSaJB&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1hmXQnWZXRvejBxr_ykSMmTPLKoDNSaJB&sz=w400" loading="lazy"/><span class="thumb-num">04</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1elXxz-2F4kT8P5WVpDbXME8NTJ7Lr47Y&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1elXxz-2F4kT8P5WVpDbXME8NTJ7Lr47Y&sz=w400" loading="lazy"/><span class="thumb-num">05</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1xD_OeiRmeRW0ZhaWo78eImw66hXWrYhv&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1xD_OeiRmeRW0ZhaWo78eImw66hXWrYhv&sz=w400" loading="lazy"/><span class="thumb-num">06</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1yw6bYuATxe5CkhcBMyAxhKbBgQA47Rpt&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1yw6bYuATxe5CkhcBMyAxhKbBgQA47Rpt&sz=w400" loading="lazy"/><span class="thumb-num">07</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1p3MkrfsIVfs17C9WjqHuwBbe_hj1Jcft&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1p3MkrfsIVfs17C9WjqHuwBbe_hj1Jcft&sz=w400" loading="lazy"/><span class="thumb-num">08</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=15C1IB0YLbbDfjBtlIE8z9iObaslGfd-P&sz=w1200"><img src="https://drive.google.com/thumbnail?id=15C1IB0YLbbDfjBtlIE8z9iObaslGfd-P&sz=w400" loading="lazy"/><span class="thumb-num">09</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1mO4tH0xutNAUdO_-BdGUHcz8OjpuB5wp&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1mO4tH0xutNAUdO_-BdGUHcz8OjpuB5wp&sz=w400" loading="lazy"/><span class="thumb-num">10</span></div>
+    </div>
+  </div>
+
+  <!-- SLOGAN GRAPHICS -->
+  <div class="cat-block reveal">
+    <div class="cat-header">
+      <span class="cat-count">7 assets</span>
+      <h3 class="cat-title">Slogan Graphics</h3>
+      <p class="cat-desc">Typography-led compositions built around the core brand slogans: Charge the Chaos, Level Up, Riot On. These pieces explore how the wordmark and messaging behave across different layouts, including profile mockups and editorial-style frames.</p>
+    </div>
+    <div class="thumb-grid" data-cat="slogan">
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1l-nJloCasUje1Uh4pLgO7_IksAkpmQu9&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1l-nJloCasUje1Uh4pLgO7_IksAkpmQu9&sz=w400" loading="lazy"/><span class="thumb-num">01</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1r30zZUguUJHuPUjCM_IcMeHCrbI4j0TD&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1r30zZUguUJHuPUjCM_IcMeHCrbI4j0TD&sz=w400" loading="lazy"/><span class="thumb-num">02</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1RCT-00iQTmBfextokltDTNz-RLZ8P2kB&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1RCT-00iQTmBfextokltDTNz-RLZ8P2kB&sz=w400" loading="lazy"/><span class="thumb-num">03</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1N7bdapy0vnklcsaqWyHLZH_tODuDcG8J&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1N7bdapy0vnklcsaqWyHLZH_tODuDcG8J&sz=w400" loading="lazy"/><span class="thumb-num">04</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1i6RerSQ6wtAIRyP_fADfschU-AoAPE4s&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1i6RerSQ6wtAIRyP_fADfschU-AoAPE4s&sz=w400" loading="lazy"/><span class="thumb-num">06</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1cgeFuDct_VEKTzKgAOP-a1aF2O8jmgy0&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1cgeFuDct_VEKTzKgAOP-a1aF2O8jmgy0&sz=w400" loading="lazy"/><span class="thumb-num">07</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=13P5rXNd6K8TDAroh98LAoCZqpH6Xv9cY&sz=w1200"><img src="https://drive.google.com/thumbnail?id=13P5rXNd6K8TDAroh98LAoCZqpH6Xv9cY&sz=w400" loading="lazy"/><span class="thumb-num">08</span></div>
+    </div>
+  </div>
+
+  <!-- BANNERS -->
+  <div class="cat-block reveal">
+    <div class="cat-header">
+      <span class="cat-count">10 assets</span>
+      <h3 class="cat-title">Banners</h3>
+      <p class="cat-desc">Wide-format horizontal compositions intended for digital advertising, website headers, and event backdrops. The banner system tests how the brand holds up at high aspect ratios where the can is secondary to the color and type.</p>
+    </div>
+    <div class="thumb-grid" data-cat="banner">
+      <div class="thumb wide" data-src="https://drive.google.com/thumbnail?id=16N1tQxqPhKL1hEQiSVIFoaGqnEOA3Pwg&sz=w1400"><img src="https://drive.google.com/thumbnail?id=16N1tQxqPhKL1hEQiSVIFoaGqnEOA3Pwg&sz=w500" loading="lazy"/><span class="thumb-num">01</span></div>
+      <div class="thumb wide" data-src="https://drive.google.com/thumbnail?id=1MJQweavuwigqUJZVrt9xvmWoRK-8gH8W&sz=w1400"><img src="https://drive.google.com/thumbnail?id=1MJQweavuwigqUJZVrt9xvmWoRK-8gH8W&sz=w500" loading="lazy"/><span class="thumb-num">02</span></div>
+      <div class="thumb wide" data-src="https://drive.google.com/thumbnail?id=1yXMIbEqGlJ4TVBsJHdM3x__Mv-yXP3CQ&sz=w1400"><img src="https://drive.google.com/thumbnail?id=1yXMIbEqGlJ4TVBsJHdM3x__Mv-yXP3CQ&sz=w500" loading="lazy"/><span class="thumb-num">03</span></div>
+      <div class="thumb wide" data-src="https://drive.google.com/thumbnail?id=1fq7EyelBDKvAoGLm-py28SyuwyNt3GAd&sz=w1400"><img src="https://drive.google.com/thumbnail?id=1fq7EyelBDKvAoGLm-py28SyuwyNt3GAd&sz=w500" loading="lazy"/><span class="thumb-num">04</span></div>
+      <div class="thumb wide" data-src="https://drive.google.com/thumbnail?id=168YnfdjPtXI63u79WGiA9tjIrrVxi6De&sz=w1400"><img src="https://drive.google.com/thumbnail?id=168YnfdjPtXI63u79WGiA9tjIrrVxi6De&sz=w500" loading="lazy"/><span class="thumb-num">05</span></div>
+      <div class="thumb wide" data-src="https://drive.google.com/thumbnail?id=18RNzqMPeDqvaMbIPtgUlMut8CH4YoJy_&sz=w1400"><img src="https://drive.google.com/thumbnail?id=18RNzqMPeDqvaMbIPtgUlMut8CH4YoJy_&sz=w500" loading="lazy"/><span class="thumb-num">06</span></div>
+      <div class="thumb wide" data-src="https://drive.google.com/thumbnail?id=1sr_FRUhFEhQOcmtWvmj9dWUzYdzerdYl&sz=w1400"><img src="https://drive.google.com/thumbnail?id=1sr_FRUhFEhQOcmtWvmj9dWUzYdzerdYl&sz=w500" loading="lazy"/><span class="thumb-num">07</span></div>
+      <div class="thumb wide" data-src="https://drive.google.com/thumbnail?id=1nJquWS9cMU8kx3JD2aobG5jy9VKRMiEx&sz=w1400"><img src="https://drive.google.com/thumbnail?id=1nJquWS9cMU8kx3JD2aobG5jy9VKRMiEx&sz=w500" loading="lazy"/><span class="thumb-num">08</span></div>
+      <div class="thumb wide" data-src="https://drive.google.com/thumbnail?id=1V7DpuGAueyzG2kPxfZYrfA9mfPkjVqib&sz=w1400"><img src="https://drive.google.com/thumbnail?id=1V7DpuGAueyzG2kPxfZYrfA9mfPkjVqib&sz=w500" loading="lazy"/><span class="thumb-num">09</span></div>
+      <div class="thumb wide" data-src="https://drive.google.com/thumbnail?id=10oV-d303NaHzkwqxwDx4U4Xw4GTf3jpv&sz=w1400"><img src="https://drive.google.com/thumbnail?id=10oV-d303NaHzkwqxwDx4U4Xw4GTf3jpv&sz=w500" loading="lazy"/><span class="thumb-num">10</span></div>
+    </div>
+  </div>
+
+  <!-- TEXTURES -->
+  <div class="cat-block reveal">
+    <div class="cat-header">
+      <span class="cat-count">9 assets</span>
+      <h3 class="cat-title">Textures and Pattern Explorations</h3>
+      <p class="cat-desc">Repeating pattern and texture systems built from the brand mark and wordmark. These explore how the Lime Riot identity tiles across surfaces: packaging wrap, apparel all-over print, and digital backgrounds. The halftone dot language and offset logo grid are the two core systems.</p>
+    </div>
+    <div class="thumb-grid" data-cat="textures">
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1Vb3c6P31VK3WgR5tB5fBVSZ65z1N23Qh&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1Vb3c6P31VK3WgR5tB5fBVSZ65z1N23Qh&sz=w400" loading="lazy"/><span class="thumb-num">11</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1tRaG76OpetyWveGvd0oWiPo4PPXvLHmg&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1tRaG76OpetyWveGvd0oWiPo4PPXvLHmg&sz=w400" loading="lazy"/><span class="thumb-num">12</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1rHQPyni7o_gZH_h0uX3MNq6vrjHxYuO4&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1rHQPyni7o_gZH_h0uX3MNq6vrjHxYuO4&sz=w400" loading="lazy"/><span class="thumb-num">13</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1in8WR2d8QLEZt82YEzHhdSNDyCD77XvV&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1in8WR2d8QLEZt82YEzHhdSNDyCD77XvV&sz=w400" loading="lazy"/><span class="thumb-num">14</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1AkmHAbNFvQ-UEaoOtVBW28dTE0hKX8yF&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1AkmHAbNFvQ-UEaoOtVBW28dTE0hKX8yF&sz=w400" loading="lazy"/><span class="thumb-num">15</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1eN4ZtE9iIbmXfmrL4mA3jQ2QhOMepShN&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1eN4ZtE9iIbmXfmrL4mA3jQ2QhOMepShN&sz=w400" loading="lazy"/><span class="thumb-num">16</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1-dny-eEUaQcsSgvSM7zrpka1cieuWlgB&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1-dny-eEUaQcsSgvSM7zrpka1cieuWlgB&sz=w400" loading="lazy"/><span class="thumb-num">17</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1cXi3pfYNPx8OV47vRiASI678_V6n645H&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1cXi3pfYNPx8OV47vRiASI678_V6n645H&sz=w400" loading="lazy"/><span class="thumb-num">18</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=11-w7rXUJT-ms9zgiUlsZaCevzbeA8Rwl&sz=w1200"><img src="https://drive.google.com/thumbnail?id=11-w7rXUJT-ms9zgiUlsZaCevzbeA8Rwl&sz=w400" loading="lazy"/><span class="thumb-num">19</span></div>
+    </div>
+  </div>
+
+  <!-- BRAND ASSETS -->
+  <div class="cat-block reveal">
+    <div class="cat-header">
+      <span class="cat-count">1 asset</span>
+      <h3 class="cat-title">Brand Assets Sheet</h3>
+      <p class="cat-desc">A single reference sheet documenting the full graphic element library: lightning bolts, pixel invaders, halftone patches, brush swashes, hearts, plus icons, checker strips, splatters, drips, and slogan banners. These are the building blocks used across all other asset categories.</p>
+    </div>
+    <div class="thumb-grid" data-cat="assets">
+      <div class="thumb wide" data-src="https://drive.google.com/thumbnail?id=12CG0go66iiRTD0JBVdzBZF7VHOKiXOvk&sz=w1400"><img src="https://drive.google.com/thumbnail?id=12CG0go66iiRTD0JBVdzBZF7VHOKiXOvk&sz=w500" loading="lazy"/><span class="thumb-num">01</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <p class="slabel">The AI Workflow</p>
+  <div class="two-col">
+    <div class="reveal">
+      <img class="process-img" src="https://drive.google.com/thumbnail?id=1l-nJloCasUje1Uh4pLgO7_IksAkpmQu9&sz=w1000" loading="lazy"/>
+    </div>
+    <div class="reveal" style="transition-delay:.15s">
+      <h2>What actually happened inside the prompts.</h2>
+      <div style="margin-top:1.75rem">
+        <div class="step">
+          <span class="step-n">01</span>
+          <div><h4>Brief before prompts</h4><p>Target, emotional territory, competitive set defined in writing before generating anything. <strong>That brief became the filter</strong> for every output evaluated afterward.</p></div>
+        </div>
+        <div class="step">
+          <span class="step-n">02</span>
+          <div><h4>Specificity over imagination</h4><p>Prompts specified <strong>exact hex values, texture density, label hierarchy ratios, and typographic constraints.</strong> Generic prompts produce generic outputs.</p></div>
+        </div>
+        <div class="step">
+          <span class="step-n">03</span>
+          <div><h4>Iteration as creative direction</h4><p>50+ variations generated. 80% discarded. Refinements targeted <strong>specific problems: kerning, texture weight, can proportion, wordmark size relative to claims.</strong></p></div>
+        </div>
+        <div class="step">
+          <span class="step-n">04</span>
+          <div><h4>System test: five categories</h4><p>The brand was extended into all five asset categories without manual production. <strong>If the system is solid, AI populates new formats without the brand breaking.</strong></p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="closing">
+  <div class="closing-inner reveal">
+    <h2>AI was the tool.<br/><em>Direction was everything.</em></h2>
+    <p>Anyone can open ChatGPT and ask for a can design. Very few know what to ask, how to evaluate the output, when to push further, and when to ship.</p>
+    <p>This is a demonstration of <strong>creative direction applied through AI workflows.</strong> A brand that could compete on shelf, in feed, and in a pitch deck. Zero traditional production hours.</p>
+    <a href="index.html#portfolio" class="back-btn">Back to Portfolio</a>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">CHONA<span>VERSE</span></span>
+  <p>2026 Chonaverse. All rights reserved.</p>
+  <a href="index.html" class="footer-back">Back to main site</a>
+</footer>
+
+<div class="lb" id="lb">
+  <button class="lb-close" id="lb-close">✕</button>
+  <button class="lb-arrow lb-prev" id="lb-prev">&#8249;</button>
+  <img id="lb-img" src="" alt=""/>
+  <button class="lb-arrow lb-next" id="lb-next">&#8250;</button>
+</div>
+
+<script>
+  const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target);}});},{threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  // Lightbox — tracks current category for arrow nav
+  let allThumbs=[], cur=0;
+  const lb=document.getElementById('lb');
+  const lbImg=document.getElementById('lb-img');
+
+  function openLb(thumb){
+    // collect all thumbs in the same thumb-grid
+    const grid=thumb.closest('.thumb-grid');
+    allThumbs=Array.from(grid.querySelectorAll('.thumb[data-src]'));
+    cur=allThumbs.indexOf(thumb);
+    lbImg.src=thumb.dataset.src;
+    lb.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closeLb(){lb.classList.remove('open');document.body.style.overflow='';}
+  function goLb(d){cur=(cur+d+allThumbs.length)%allThumbs.length;lbImg.src=allThumbs[cur].dataset.src;}
+
+  document.querySelectorAll('.thumb[data-src]').forEach(el=>el.addEventListener('click',()=>openLb(el)));
+  document.getElementById('lb-close').addEventListener('click',closeLb);
+  document.getElementById('lb-prev').addEventListener('click',e=>{e.stopPropagation();goLb(-1)});
+  document.getElementById('lb-next').addEventListener('click',e=>{e.stopPropagation();goLb(1)});
+  lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});
+  document.addEventListener('keydown',e=>{
+    if(!lb.classList.contains('open'))return;
+    if(e.key==='Escape')closeLb();
+    if(e.key==='ArrowLeft')goLb(-1);
+    if(e.key==='ArrowRight')goLb(1);
+  });
+</script>
+</body>
+</html>

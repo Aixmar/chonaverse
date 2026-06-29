@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fanny Flan — Case Study · Chonaverse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --black:#080810;--white:#F2F2EE;
+      --yellow:#F5C842;--cream:#FFF8E8;--rust:#C4622D;--rust2:#E8855A;
+      --dark:#0d0800;--mid:#0E0E18;--card:#12121E;--dim:#5A5A80;--border:rgba(255,255,255,0.07);
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--black);color:var(--white);font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden}
+    ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--black)}::-webkit-scrollbar-thumb{background:var(--yellow);border-radius:2px}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 4rem;background:rgba(13,8,0,.88);backdrop-filter:blur(20px);border-bottom:1px solid rgba(245,200,66,.1)}
+    .nav-logo{font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:var(--white);text-decoration:none}
+    .nav-logo span{color:var(--yellow)}
+    .nav-back{color:var(--dim);text-decoration:none;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+    .nav-back:hover{color:var(--white)}
+
+    /* HERO */
+    #hero{min-height:100vh;display:flex;align-items:flex-end;padding:8rem 4rem 5rem;position:relative;overflow:hidden;background:var(--dark)}
+    .bg{position:absolute;inset:0;background:radial-gradient(ellipse 110% 80% at 60% 40%,#2a1200 0%,#0d0800 60%,var(--black) 100%)}
+    .blob{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;animation:drift 16s ease-in-out infinite alternate}
+    .b1{width:600px;height:600px;background:#3d1e00;top:-25%;right:-5%;opacity:.65}
+    .b2{width:400px;height:400px;background:var(--rust);bottom:-20%;left:-5%;opacity:.12;animation-delay:-8s}
+    @keyframes drift{from{transform:translate(0,0)scale(1)}to{transform:translate(25px,18px)scale(1.06)}}
+    .dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(245,200,66,.05)1px,transparent 1px);background-size:30px 30px;pointer-events:none}
+    .hero-content{position:relative;z-index:1;max-width:820px}
+    .eyebrow{font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;color:var(--yellow);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;opacity:0;animation:up .8s .2s forwards}
+    .eyebrow::before{content:'';display:inline-block;width:32px;height:1px;background:var(--yellow)}
+    .hero-title{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,9vw,8rem);font-weight:900;line-height:.9;letter-spacing:-.03em;opacity:0;animation:up .8s .35s forwards}
+    .hero-title .g{color:var(--yellow)}
+    .hero-sub{margin-top:1.5rem;font-size:clamp(.9rem,1.4vw,1.05rem);font-weight:300;color:rgba(255,255,255,.4);letter-spacing:.04em;text-transform:uppercase;opacity:0;animation:up .8s .5s forwards}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:3rem;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(245,200,66,.15);opacity:0;animation:up .8s .7s forwards}
+    .meta-item{display:flex;flex-direction:column;gap:.25rem}
+    .meta-label{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--yellow);opacity:.7}
+    .meta-val{font-size:.85rem;color:var(--white);font-weight:500}
+    @keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+    /* STRIP */
+    .strip{background:#0a0500;padding:2.5rem 0;overflow:hidden;border-top:1px solid rgba(245,200,66,.1);border-bottom:1px solid rgba(245,200,66,.1)}
+    .strip-track{display:flex;gap:1rem;width:max-content;animation:scrollx 32s linear infinite}
+    .strip-track:hover{animation-play-state:paused}
+    .strip-item{flex-shrink:0;width:200px;height:150px;overflow:hidden;border:1px solid rgba(245,200,66,.07)}
+    .strip-item img{width:100%;height:100%;object-fit:cover;filter:brightness(.85);transition:filter .3s}
+    .strip-item:hover img{filter:brightness(1)}
+    @keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    /* SHARED */
+    section{padding:6rem 4rem}
+    .slabel{font-size:.68rem;letter-spacing:.35em;text-transform:uppercase;color:var(--yellow);margin-bottom:2.5rem;display:flex;align-items:center;gap:1rem}
+    .slabel::after{content:'';height:1px;background:rgba(245,200,66,.12);max-width:200px;flex:1}
+    h2{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.5vw,3rem);font-weight:700;line-height:1.1;letter-spacing:-.01em}
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    /* BRIEF */
+    #brief{background:var(--mid)}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+    .brief-left h2{margin-bottom:1.25rem}
+    .brief-left p{color:var(--dim);font-size:.9rem;line-height:1.8;font-weight:300;margin-bottom:1rem}
+    .brief-left p strong{color:var(--yellow);font-weight:500}
+    .brief-stats{display:flex;flex-direction:column;gap:1px;background:rgba(245,200,66,.08)}
+    .brief-stat{background:var(--mid);padding:1.75rem 2rem;transition:background .2s}
+    .brief-stat:hover{background:var(--card)}
+    .b-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--yellow);display:block;line-height:1}
+    .b-desc{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-top:.35rem;display:block}
+
+    /* DESIGN DECISIONS */
+    #design{background:var(--black)}
+    .design-intro{margin-bottom:3.5rem}
+    .design-intro p{color:var(--dim);font-size:.9rem;line-height:1.8;max-width:520px;margin-top:.75rem;font-weight:300}
+    .decisions{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+    .dec{background:var(--card);border:1px solid rgba(245,200,66,.1);padding:2rem;position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
+    .dec:hover{border-color:rgba(245,200,66,.45);transform:translateY(-3px)}
+    .dec::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--yellow),var(--rust2));opacity:0;transition:opacity .3s}
+    .dec:hover::before{opacity:1}
+    .dec-n{font-size:.58rem;letter-spacing:.25em;color:var(--yellow);opacity:.4;margin-bottom:.85rem;display:block}
+    .dec h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:.65rem;line-height:1.2}
+    .dec p{color:var(--dim);font-size:.83rem;line-height:1.7;font-weight:300}
+    .dec p strong{color:rgba(245,200,66,.85);font-weight:500}
+
+    /* ASSET LIBRARY */
+    #gallery{background:var(--mid);padding:6rem 4rem}
+    .cat-block{margin-bottom:5rem}
+    .cat-block:last-child{margin-bottom:0}
+    .cat-header{margin-bottom:2rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(245,200,66,.12)}
+    .cat-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--white);margin-bottom:.35rem}
+    .cat-desc{font-size:.82rem;color:var(--dim);font-weight:300;line-height:1.6}
+    .cat-count{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow);opacity:.6;margin-bottom:.5rem;display:block}
+    .thumb-grid{display:flex;flex-wrap:wrap;gap:.75rem}
+    .thumb{width:160px;height:120px;overflow:hidden;cursor:pointer;border:1px solid rgba(245,200,66,.08);flex-shrink:0;position:relative;transition:border-color .25s,transform .25s}
+    .thumb:hover{border-color:rgba(245,200,66,.5);transform:scale(1.03)}
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.82);transition:filter .3s}
+    .thumb:hover img{filter:brightness(1)}
+    .thumb-num{position:absolute;bottom:.3rem;right:.4rem;font-size:.55rem;letter-spacing:.1em;color:rgba(245,200,66,.5);font-weight:600}
+    .thumb.wide{width:240px}
+    .thumb.tall{height:180px}
+
+    /* CLOSING */
+    #closing{background:var(--dark);position:relative;overflow:hidden;text-align:center;padding:7rem 4rem}
+    #closing::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(245,200,66,.04)1px,transparent 1px);background-size:30px 30px;pointer-events:none}
+    .closing-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
+    .closing-inner h2{margin-bottom:1.25rem}
+    .closing-inner h2 em{color:var(--yellow);font-style:normal}
+    .closing-inner p{color:rgba(255,255,255,.45);font-size:.9rem;line-height:1.8;font-weight:300;margin-bottom:.85rem}
+    .closing-inner p strong{color:var(--yellow);font-weight:500}
+    .back-btn{display:inline-flex;align-items:center;gap:.75rem;margin-top:2.5rem;color:var(--yellow);text-decoration:none;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;border-bottom:1px solid rgba(245,200,66,.3);padding-bottom:2px;transition:border-color .2s}
+    .back-btn:hover{border-color:var(--yellow)}
+
+    footer{background:var(--black);padding:2.5rem 4rem;border-top:1px solid rgba(245,200,66,.08);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+    .footer-logo{font-weight:700;font-size:.82rem;letter-spacing:.22em;text-transform:uppercase}
+    .footer-logo span{color:var(--yellow)}
+    footer p{color:var(--dim);font-size:.72rem}
+    .footer-back{color:var(--dim);text-decoration:none;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+    .footer-back:hover{color:var(--white)}
+
+    /* LIGHTBOX */
+    .lb{position:fixed;inset:0;z-index:1000;background:rgba(13,8,0,.97);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;padding:2rem}
+    .lb.open{opacity:1;pointer-events:all}
+    .lb img{max-width:90vw;max-height:85vh;object-fit:contain;border:1px solid rgba(245,200,66,.12)}
+    .lb-close{position:fixed;top:1.5rem;right:1.5rem;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(13,8,0,.8);border:1px solid rgba(245,200,66,.2);color:var(--white);cursor:pointer;font-size:1.1rem;transition:border-color .2s,color .2s}
+    .lb-close:hover{border-color:var(--yellow);color:var(--yellow)}
+    .lb-arrow{position:fixed;top:50%;transform:translateY(-50%);background:rgba(13,8,0,.8);border:1px solid rgba(245,200,66,.15);color:var(--white);width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.2rem;transition:border-color .2s}
+    .lb-arrow:hover{border-color:var(--yellow)}
+    .lb-prev{left:1rem}.lb-next{right:1rem}
+
+    @media(max-width:900px){
+      nav{padding:1.1rem 1.5rem}
+      section{padding:4rem 1.5rem}
+      #gallery{padding:4rem 1.5rem}
+      .two-col{grid-template-columns:1fr;gap:2.5rem}
+      .decisions{grid-template-columns:1fr}
+      .thumb{width:120px;height:90px}
+      .thumb.wide{width:180px}
+      .thumb.tall{height:120px}
+      .hero-meta{gap:1.5rem}
+      footer{flex-direction:column;text-align:center;padding:2rem 1.5rem}
+    }
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">CHONA<span>VERSE</span></a>
+  <a href="index.html#portfolio" class="nav-back">Back to Portfolio</a>
+</nav>
+
+<section id="hero">
+  <div class="bg"></div>
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="dots"></div>
+  <div class="hero-content">
+    <p class="eyebrow">Brand Identity · Packaging · Fast Food</p>
+    <h1 class="hero-title"><span class="g">FANNY</span><br/>FLAN</h1>
+    <p class="hero-sub">Fast food. Sweet personality. Savory bites. Sweet vibes.</p>
+    <div class="hero-meta">
+      <div class="meta-item"><span class="meta-label">Discipline</span><span class="meta-val">Brand Identity</span></div>
+      <div class="meta-item"><span class="meta-label">Category</span><span class="meta-val">Fast Food</span></div>
+      <div class="meta-item"><span class="meta-label">Toolkit</span><span class="meta-val">ChatGPT Image Gen</span></div>
+      <div class="meta-item"><span class="meta-label">Scope</span><span class="meta-val">Brand + Packaging + Social</span></div>
+      <div class="meta-item"><span class="meta-label">Status</span><span class="meta-val">In production</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-track">
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=1dz69MqxMOvT8mCga6KVNGyqYjSg18gZ7&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=1xmFVKiO4D3LeBmVQ_7xIW8HiTUsCPmnr&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=1o8dIhlvOMH1hpYMUvKaDb__rkZHwDTCU&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=13ruSguUrBDQd_P3qpzuEAbiuZZ2MxHRa&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=11yDnkxKqcgirassB1f-Dt4I-q2Ycl4od&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=1JLS302zF5b2Lp0O1OrJ_LcrBzsoaI0wP&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=1_cTgWX3XDnt03SJVWMtXT50Na5GzZy9x&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=1dz69MqxMOvT8mCga6KVNGyqYjSg18gZ7&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=1xmFVKiO4D3LeBmVQ_7xIW8HiTUsCPmnr&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=1o8dIhlvOMH1hpYMUvKaDb__rkZHwDTCU&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=13ruSguUrBDQd_P3qpzuEAbiuZZ2MxHRa&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=11yDnkxKqcgirassB1f-Dt4I-q2Ycl4od&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=1JLS302zF5b2Lp0O1OrJ_LcrBzsoaI0wP&sz=w400" loading="lazy"/></div>
+    <div class="strip-item"><img src="https://drive.google.com/thumbnail?id=1_cTgWX3XDnt03SJVWMtXT50Na5GzZy9x&sz=w400" loading="lazy"/></div>
+  </div>
+</div>
+
+<section id="brief">
+  <p class="slabel">Project Brief</p>
+  <div class="two-col">
+    <div class="brief-left reveal">
+      <h2>The sweetest fast food brand you never expected.</h2>
+      <p>Fanny Flan sits at the intersection of savory fast food and sweet personality. The brand tension is the entire brief: <strong>serious food quality, absolutely not serious about itself.</strong></p>
+      <p>The target customer craves smash burgers and flan in the same visit. They are not confused. They are exactly right. The brand identity had to hold both ends without collapsing into a pun.</p>
+      <p>Scope covered wordmark explorations, full packaging system, social media content, people and lifestyle imagery, apparel, and brand asset documentation. All generated through AI with direction at every step.</p>
+    </div>
+    <div class="brief-stats reveal" style="transition-delay:.15s">
+      <div class="brief-stat"><span class="b-num">10</span><span class="b-desc">Packaging assets across formats</span></div>
+      <div class="brief-stat"><span class="b-num">4</span><span class="b-desc">Social media content pieces</span></div>
+      <div class="brief-stat"><span class="b-num">5</span><span class="b-desc">Asset categories: packaging, social, people, brand, apparel</span></div>
+      <div class="brief-stat"><span class="b-num">100%</span><span class="b-desc">AI-generated visuals, zero traditional production</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="design">
+  <p class="slabel">Design Decisions</p>
+  <div class="design-intro reveal">
+    <h2>Four calls that make it work.</h2>
+    <p>The brand has to be warm, bold, and slightly irreverent. Every decision was tested against that read.</p>
+  </div>
+  <div class="decisions">
+    <div class="dec reveal">
+      <span class="dec-n">01</span>
+      <h3>Warm yellow on near-black, rust as the punch</h3>
+      <p><strong>#F5C842 primary, #C4622D as accent.</strong> Yellow reads as fun and appetite-stimulating without going fast-food cliche. The rust accent gives it heat and edge. Together they read as premium casual: not cheap, not precious.</p>
+    </div>
+    <div class="dec reveal" style="transition-delay:.08s">
+      <span class="dec-n">02</span>
+      <h3>Script-adjacent wordmark with star punctuation</h3>
+      <p>Fanny Flan uses a personality-forward wordmark that reads as <strong>handwritten confidence, not amateur.</strong> The star symbol (✦) appears throughout as a brand tic: in slogans, labels, and social posts. It signals quality without being formal.</p>
+    </div>
+    <div class="dec reveal" style="transition-delay:.12s">
+      <span class="dec-n">03</span>
+      <h3>Dual tagline system</h3>
+      <p><strong>"Fast food. Sweet personality."</strong> is the brand statement. <strong>"Savory bites. Sweet vibes."</strong> is the product promise. Both run independently. Both work on packaging, social, and apparel. The rule: one tagline per surface, never both together.</p>
+    </div>
+    <div class="dec reveal" style="transition-delay:.16s">
+      <span class="dec-n">04</span>
+      <h3>People-first brand photography</h3>
+      <p>The people category was intentional from the start. <strong>Fanny Flan is not a product brand, it is a personality brand.</strong> Customers are characters. The lifestyle imagery was designed to feel like user-generated content at brand quality, not polished studio photography.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ASSET LIBRARY -->
+<section id="gallery">
+  <p class="slabel">Asset Library</p>
+  <div class="reveal" style="margin-bottom:1rem">
+    <h2>Five categories. One personality.</h2>
+    <p style="color:var(--dim);font-size:.88rem;margin-top:.75rem;max-width:520px;line-height:1.7;font-weight:300">Click any thumbnail to view full size. Use arrow keys to navigate within the category.</p>
+  </div>
+
+  <!-- PACKAGING -->
+  <div class="cat-block reveal">
+    <div class="cat-header">
+      <span class="cat-count">10 assets</span>
+      <h3 class="cat-title">Packaging</h3>
+      <p class="cat-desc">The full packaging system: bags, boxes, wrappers, cups, and containers. Each format was explored with the dual tagline system applied. The challenge was making fast food packaging feel like something you want to keep rather than throw away.</p>
+    </div>
+    <div class="thumb-grid" data-cat="packaging">
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1dz69MqxMOvT8mCga6KVNGyqYjSg18gZ7&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1dz69MqxMOvT8mCga6KVNGyqYjSg18gZ7&sz=w400" loading="lazy"/><span class="thumb-num">01</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1xmFVKiO4D3LeBmVQ_7xIW8HiTUsCPmnr&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1xmFVKiO4D3LeBmVQ_7xIW8HiTUsCPmnr&sz=w400" loading="lazy"/><span class="thumb-num">02</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1KZe4IuUcFS8U7etag8wjir2dJukUzJD7&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1KZe4IuUcFS8U7etag8wjir2dJukUzJD7&sz=w400" loading="lazy"/><span class="thumb-num">03</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1GgG_GzvrD1zmB3WtC2jO6k1BjWMSUGIq&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1GgG_GzvrD1zmB3WtC2jO6k1BjWMSUGIq&sz=w400" loading="lazy"/><span class="thumb-num">04</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1XMiQgNMttXl7RJea24FWjC0hWS7cxOZs&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1XMiQgNMttXl7RJea24FWjC0hWS7cxOZs&sz=w400" loading="lazy"/><span class="thumb-num">05</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=10cJvCRrpz562fhvT1SxsYtyvlt--2hWn&sz=w1200"><img src="https://drive.google.com/thumbnail?id=10cJvCRrpz562fhvT1SxsYtyvlt--2hWn&sz=w400" loading="lazy"/><span class="thumb-num">06</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=19suBsyrhNqJ0ybdQqLYJqpyUexNZIRuG&sz=w1200"><img src="https://drive.google.com/thumbnail?id=19suBsyrhNqJ0ybdQqLYJqpyUexNZIRuG&sz=w400" loading="lazy"/><span class="thumb-num">07</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1o8dIhlvOMH1hpYMUvKaDb__rkZHwDTCU&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1o8dIhlvOMH1hpYMUvKaDb__rkZHwDTCU&sz=w400" loading="lazy"/><span class="thumb-num">08</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1NCsYiDmgTyCqz1B1RPHBdsrfSDFHRKjZ&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1NCsYiDmgTyCqz1B1RPHBdsrfSDFHRKjZ&sz=w400" loading="lazy"/><span class="thumb-num">09</span></div>
+      <div class="thumb" data-src="https://drive.google.com/thumbnail?id=1yKIORj9mCllwM216JPrGun9eqTLCaLwR&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1yKIORj9mCllwM216JPrGun9eqTLCaLwR&sz=w400" loading="lazy"/><span class="thumb-num">10</span></div>
+    </div>
+  </div>
+
+  <!-- SOCIAL MEDIA -->
+  <div class="cat-block reveal">
+    <div class="cat-header">
+      <span class="cat-count">4 assets</span>
+      <h3 class="cat-title">Social Media</h3>
+      <p class="cat-desc">Website mockup and in-app content designed for Instagram and a branded app interface. The web page mockup shows how the brand translates to digital storefronts. The app UI explores a loyalty rewards flow — Fanny Rewards — using the full brand system.</p>
+    </div>
+    <div class="thumb-grid" data-cat="social">
+      <div class="thumb wide" data-src="https://drive.google.com/thumbnail?id=13ruSguUrBDQd_P3qpzuEAbiuZZ2MxHRa&sz=w1200"><img src="https://drive.google.com/thumbnail?id=13ruSguUrBDQd_P3qpzuEAbiuZZ2MxHRa&sz=w500" loading="lazy"/><span class="thumb-num">01 — Website</span></div>
+      <div class="thumb wide" data-src="https://drive.google.com/thumbnail?id=1Trx7y61BK5Dvrrm3j6B70YMq8LwtkT1f&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1Trx7y61BK5Dvrrm3j6B70YMq8LwtkT1f&sz=w500" loading="lazy"/><span class="thumb-num">02 — App UI</span></div>
+      <div class="thumb wide" data-src="https://drive.google.com/thumbnail?id=1IHRnCR4QOMv0dwgZmCSiGkKb3rAmsItG&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1IHRnCR4QOMv0dwgZmCSiGkKb3rAmsItG&sz=w500" loading="lazy"/><span class="thumb-num">03 — Brand Vision</span></div>
+      <div class="thumb wide" data-src="https://drive.google.com/thumbnail?id=1H6d883L9HBzlb8Wnwj66roEgZyshWHop&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1H6d883L9HBzlb8Wnwj66roEgZyshWHop&sz=w500" loading="lazy"/><span class="thumb-num">04</span></div>
+    </div>
+  </div>
+
+  <!-- PEOPLE -->
+  <div class="cat-block reveal">
+    <div class="cat-header">
+      <span class="cat-count">3 assets</span>
+      <h3 class="cat-title">People</h3>
+      <p class="cat-desc">Lifestyle and editorial photography direction applied through AI. The brief for this category: customers look like they are having fun, not posing for an ad. The brand mark appears naturally in the frame, never forced. Bilingual copy appears in one piece to signal the brand's cultural range.</p>
+    </div>
+    <div class="thumb-grid" data-cat="people">
+      <div class="thumb tall" data-src="https://drive.google.com/thumbnail?id=11yDnkxKqcgirassB1f-Dt4I-q2Ycl4od&sz=w1200"><img src="https://drive.google.com/thumbnail?id=11yDnkxKqcgirassB1f-Dt4I-q2Ycl4od&sz=w500" loading="lazy"/><span class="thumb-num">01</span></div>
+      <div class="thumb tall" data-src="https://drive.google.com/thumbnail?id=1FU6oGWf5Z-Rl25pUI-5wF0bDC07FzWXb&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1FU6oGWf5Z-Rl25pUI-5wF0bDC07FzWXb&sz=w500" loading="lazy"/><span class="thumb-num">02</span></div>
+      <div class="thumb tall" data-src="https://drive.google.com/thumbnail?id=1WU_uvPMB0PyDxHaANQADBbrohfy_xwGV&sz=w1200"><img src="https://drive.google.com/thumbnail?id=1WU_uvPMB0PyDxHaANQADBbrohfy_xwGV&sz=w500" loading="lazy"/><span class="thumb-num">03</span></div>
+    </div>
+  </div>
+
+  <!-- BRAND ASSETS -->
+  <div class="cat-block reveal">
+    <div class="cat-header">
+      <span class="cat-count">2 assets</span>
+      <h3 class="cat-title">Brand Assets</h3>
+      <p class="cat-desc">Core wordmark exploration sheet and secondary brand element library. The wordmark sheet documents the typographic variations explored across the identity, from script to block to mixed case. The element sheet covers icons, star marks, dividers, and pattern units used across all applications.</p>
+    </div>
+    <div class="thumb-grid" data-cat="brand">
+      <div class="thumb wide" data-src="https://drive.google.com/thumbnail?id=1JLS302zF5b2Lp0O1OrJ_LcrBzsoaI0wP&sz=w1400"><img src="https://drive.google.com/thumbnail?id=1JLS302zF5b2Lp0O1OrJ_LcrBzsoaI0wP&sz=w500" loading="lazy"/><span class="thumb-num">01</span></div>
+      <div class="thumb wide" data-src="https://drive.google.com/thumbnail?id=1znJ3jG6xxM1xHApbI90cE_-I33rA_sR2&sz=w1400"><img src="https://drive.google.com/thumbnail?id=1znJ3jG6xxM1xHApbI90cE_-I33rA_sR2&sz=w500" loading="lazy"/><span class="thumb-num">02</span></div>
+    </div>
+  </div>
+
+  <!-- APPAREL -->
+  <div class="cat-block reveal">
+    <div class="cat-header">
+      <span class="cat-count">1 asset</span>
+      <h3 class="cat-title">Apparel</h3>
+      <p class="cat-desc">Staff uniform concept applying the brand to physical apparel. The brief: crew wear that customers want to buy, not just something employees tolerate. The design uses the wordmark on a dark base with the star mark as the secondary graphic element.</p>
+    </div>
+    <div class="thumb-grid" data-cat="apparel">
+      <div class="thumb wide" data-src="https://drive.google.com/thumbnail?id=1_cTgWX3XDnt03SJVWMtXT50Na5GzZy9x&sz=w1400"><img src="https://drive.google.com/thumbnail?id=1_cTgWX3XDnt03SJVWMtXT50Na5GzZy9x&sz=w500" loading="lazy"/><span class="thumb-num">01</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="closing">
+  <div class="closing-inner reveal">
+    <h2>Savory now.<br/><em>Sweet later.</em></h2>
+    <p>Fanny Flan proves that brand personality is not a tagline decision. It is a system decision. <strong>Every touchpoint, from the wrapper to the app to the staff shirt, has to carry the same character.</strong></p>
+    <p>This case study is still in production. More assets and the final brand guidelines will be added as the project evolves.</p>
+    <a href="index.html#portfolio" class="back-btn">Back to Portfolio</a>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">CHONA<span>VERSE</span></span>
+  <p>2026 Chonaverse. All rights reserved.</p>
+  <a href="index.html" class="footer-back">Back to main site</a>
+</footer>
+
+<div class="lb" id="lb">
+  <button class="lb-close" id="lb-close">✕</button>
+  <button class="lb-arrow lb-prev" id="lb-prev">&#8249;</button>
+  <img id="lb-img" src="" alt=""/>
+  <button class="lb-arrow lb-next" id="lb-next">&#8250;</button>
+</div>
+
+<script>
+  const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target);}});},{threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  let allThumbs=[], cur=0;
+  const lb=document.getElementById('lb');
+  const lbImg=document.getElementById('lb-img');
+
+  function openLb(thumb){
+    const grid=thumb.closest('.thumb-grid');
+    allThumbs=Array.from(grid.querySelectorAll('.thumb[data-src]'));
+    cur=allThumbs.indexOf(thumb);
+    lbImg.src=thumb.dataset.src;
+    lb.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closeLb(){lb.classList.remove('open');document.body.style.overflow='';}
+  function goLb(d){cur=(cur+d+allThumbs.length)%allThumbs.length;lbImg.src=allThumbs[cur].dataset.src;}
+
+  document.querySelectorAll('.thumb[data-src]').forEach(el=>el.addEventListener('click',()=>openLb(el)));
+  document.getElementById('lb-close').addEventListener('click',closeLb);
+  document.getElementById('lb-prev').addEventListener('click',e=>{e.stopPropagation();goLb(-1)});
+  document.getElementById('lb-next').addEventListener('click',e=>{e.stopPropagation();goLb(1)});
+  lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});
+  document.addEventListener('keydown',e=>{
+    if(!lb.classList.contains('open'))return;
+    if(e.key==='Escape')closeLb();
+    if(e.key==='ArrowLeft')goLb(-1);
+    if(e.key==='ArrowRight')goLb(1);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chonaverse — Creative Direction</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --black:#080810;--white:#F2F2EE;--navy:#3A356E;
+      --blue:#4F81F7;--cyan:#00F4CC;--pink:#EFB7FF;
+      --mid:#0E0E18;--card:#12121E;--dim:#5A5A80;--border:rgba(255,255,255,0.07);
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--black);color:var(--white);font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden}
+    ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--black)}::-webkit-scrollbar-thumb{background:var(--blue);border-radius:2px}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 4rem;background:rgba(8,8,16,.78);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:padding .3s}
+    nav.scrolled{padding:.85rem 4rem}
+    .nav-logo{font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:var(--white);text-decoration:none}
+    .nav-logo .accent{color:var(--cyan)}
+    nav ul{list-style:none;display:flex;gap:2.5rem;align-items:center}
+    nav ul li a{color:var(--dim);text-decoration:none;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+    nav ul li a:hover{color:var(--white)}
+    .nav-cta{background:var(--blue)!important;color:var(--white)!important;padding:.55rem 1.3rem;font-weight:600!important;border-radius:2px;transition:opacity .2s!important}
+    .nav-cta:hover{opacity:.85!important}
+
+    /* HERO */
+    #hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 4rem 5rem;position:relative;overflow:hidden}
+    .blob{position:absolute;border-radius:50%;filter:blur(130px);pointer-events:none;animation:blobDrift 16s ease-in-out infinite alternate}
+    .b1{width:650px;height:650px;background:var(--navy);top:-20%;left:-12%;opacity:.55;animation-delay:0s}
+    .b2{width:480px;height:480px;background:#1a0a3e;bottom:-20%;right:0;opacity:.5;animation-delay:-6s}
+    .b3{width:320px;height:320px;background:var(--blue);top:35%;left:45%;opacity:.12;animation-delay:-11s}
+    .b4{width:250px;height:250px;background:var(--cyan);bottom:10%;left:30%;opacity:.07;animation-delay:-4s}
+    @keyframes blobDrift{from{transform:translate(0,0)scale(1)}to{transform:translate(35px,25px)scale(1.07)}}
+    .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(79,129,247,.05)1px,transparent 1px),linear-gradient(90deg,rgba(79,129,247,.05)1px,transparent 1px);background-size:72px 72px;pointer-events:none;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 20%,transparent 100%)}
+    .hero-vline{position:absolute;top:0;right:18%;width:1px;height:100%;background:linear-gradient(to bottom,transparent,var(--cyan),transparent);opacity:.15}
+    .hero-content{position:relative;z-index:1;max-width:920px}
+    .hero-eyebrow{font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;color:var(--cyan);margin-bottom:2rem;display:flex;align-items:center;gap:1rem;opacity:0;animation:fadeUp .8s .2s forwards}
+    .hero-eyebrow::before{content:'';display:inline-block;width:32px;height:1px;background:var(--cyan)}
+    .hero-title{font-family:'Playfair Display',serif;font-size:clamp(3.8rem,9.5vw,8.5rem);font-weight:900;line-height:.93;letter-spacing:-.025em;position:relative;display:inline-block;opacity:0;animation:fadeUp .8s .35s forwards}
+    .hero-title .accent{color:var(--cyan)}
+    .hero-title::after{content:'';position:absolute;left:-1%;right:-1%;top:53%;height:1px;background:linear-gradient(90deg,transparent,var(--blue),var(--cyan),transparent);opacity:.55}
+    .hero-tagline{margin-top:2.5rem;font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.1rem,2vw,1.45rem);font-weight:700;color:var(--pink);opacity:0;animation:fadeUp .8s .5s forwards}
+    .hero-sub{margin-top:1.2rem;max-width:520px;color:var(--dim);font-size:1rem;line-height:1.75;font-weight:300;opacity:0;animation:fadeUp .8s .65s forwards}
+    .hero-sub strong{color:var(--pink);font-weight:500}
+    .hero-cta{margin-top:2.75rem;display:flex;gap:1.25rem;align-items:center;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .8s forwards}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .btn-primary{background:var(--blue);color:var(--white);padding:.9rem 2.2rem;text-decoration:none;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;border-radius:2px;transition:opacity .2s,transform .2s,box-shadow .2s;display:inline-flex;align-items:center;gap:.5rem}
+    .btn-primary:hover{opacity:.88;transform:translateY(-2px);box-shadow:0 8px 32px rgba(79,129,247,.4)}
+    .btn-secondary{background:transparent;color:var(--cyan);border:1px solid var(--cyan);padding:.9rem 2.2rem;text-decoration:none;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;border-radius:2px;transition:background .2s,color .2s,transform .2s}
+    .btn-secondary:hover{background:var(--cyan);color:var(--black);transform:translateY(-2px)}
+    .hero-scroll-hint{position:absolute;bottom:2.5rem;left:4rem;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--dim);display:flex;flex-direction:column;align-items:center;gap:.6rem;opacity:0;animation:fadeIn 1s 1.5s forwards}
+    @keyframes fadeIn{to{opacity:1}}
+    .scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--cyan),transparent);animation:scrollPulse 2.2s ease-in-out infinite}
+    @keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.15)}}
+
+    /* TICKER */
+    .ticker-wrap{padding:.9rem 0;overflow:hidden;background:linear-gradient(90deg,var(--navy),#2a2060,var(--navy));border-top:1px solid rgba(0,244,204,.15);border-bottom:1px solid rgba(0,244,204,.15)}
+    .ticker-track{display:flex;width:max-content;animation:tickerScroll 30s linear infinite}
+    .ticker-track:hover{animation-play-state:paused}
+    .ticker-item{display:flex;align-items:center;gap:2rem;padding-right:3rem;white-space:nowrap;font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan)}
+    .ticker-dot{width:4px;height:4px;border-radius:50%;background:var(--pink);flex-shrink:0}
+    @keyframes tickerScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    /* STATS */
+    #stats{background:var(--mid);padding:5rem 4rem}
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border)}
+    .stat-cell{background:var(--mid);padding:3rem 2.5rem;position:relative;overflow:hidden;transition:background .3s}
+    .stat-cell:hover{background:var(--card)}
+    .stat-cell::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:linear-gradient(to bottom,var(--cyan),var(--blue));transition:height .5s ease}
+    .stat-cell:hover::before{height:100%}
+    .stat-number{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,4.5vw,4rem);font-weight:900;line-height:1;color:var(--white);display:block}
+    .stat-suffix{color:var(--cyan)}
+    .stat-desc{margin-top:.75rem;font-size:.8rem;color:var(--dim);line-height:1.5;font-weight:300}
+
+    /* PORTFOLIO */
+    #portfolio{background:var(--black);padding:7rem 4rem}
+    .section-label{font-size:.68rem;letter-spacing:.35em;text-transform:uppercase;color:var(--cyan);margin-bottom:3.5rem;display:flex;align-items:center;gap:1rem}
+    .section-label::after{content:'';height:1px;background:var(--border);max-width:200px;flex:1}
+    h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:700;line-height:1.1;letter-spacing:-.01em}
+    .portfolio-intro{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:4rem;gap:2rem;flex-wrap:wrap}
+    .portfolio-intro p{color:var(--dim);max-width:380px;font-size:.9rem;line-height:1.7}
+
+    /* FEATURED PROJECTS row */
+    .featured-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:1.25rem}
+
+    .f-item{position:relative;overflow:hidden;cursor:pointer;background:var(--card);border:1px solid var(--border);transition:border-color .3s}
+    .f-item:hover{border-color:rgba(0,244,204,.4)}
+    .f-img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;transition:transform .55s ease,filter .4s;filter:grayscale(15%) brightness(.82)}
+    .f-item:hover .f-img{transform:scale(1.04);filter:grayscale(0%) brightness(1)}
+    .f-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,16,.97) 0%,rgba(8,8,16,.15) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:2rem;opacity:0;transition:opacity .35s}
+    .f-item:hover .f-overlay{opacity:1}
+    .f-label{position:absolute;top:1rem;left:1rem;background:rgba(8,8,16,.78);backdrop-filter:blur(8px);border:1px solid var(--border);padding:.3rem .75rem;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--dim)}
+    .f-overlay h3{font-family:'Playfair Display',serif;font-size:1.15rem;margin-bottom:.3rem;transform:translateY(8px);transition:transform .35s}
+    .f-item:hover .f-overlay h3{transform:translateY(0)}
+    .f-overlay span{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);display:block;transform:translateY(8px);transition:transform .35s .05s}
+    .f-item:hover .f-overlay span{transform:translateY(0)}
+    .f-coming{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;background:var(--card)}
+    .f-coming-icon{font-size:2rem;opacity:.12}
+    .f-coming-text{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--dim)}
+    .f-coming-label{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);margin-top:.25rem}
+    .f-zoom{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.6);opacity:0;transition:opacity .3s,transform .3s;font-size:1.5rem;color:var(--cyan);pointer-events:none}
+    .f-item:hover .f-zoom{opacity:1;transform:translate(-50%,-50%) scale(1)}
+
+    /* SECONDARY grid */
+    .secondary-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:1.25rem}
+    .p-item{position:relative;overflow:hidden;cursor:pointer;background:var(--card);border:1px solid var(--border);transition:border-color .3s}
+    .p-item:hover{border-color:rgba(0,244,204,.35)}
+    .p-item:nth-child(1){grid-column:span 5}
+    .p-item:nth-child(2){grid-column:span 4}
+    .p-item:nth-child(3){grid-column:span 3}
+    .p-item:nth-child(4){grid-column:span 3}
+    .p-item:nth-child(5){grid-column:span 5}
+    .p-item:nth-child(6){grid-column:span 4}
+    .p-item:nth-child(7){grid-column:span 4}
+    .p-item:nth-child(8){grid-column:span 4}
+    .p-item:nth-child(9){grid-column:span 4}
+    .p-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .55s ease,filter .4s;filter:grayscale(15%) brightness(.82)}
+    .p-item:hover .p-img{transform:scale(1.04);filter:grayscale(0%) brightness(1)}
+    .p-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,16,.97) 0%,rgba(8,8,16,.2) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;opacity:0;transition:opacity .35s}
+    .p-item:hover .p-overlay{opacity:1}
+    .p-overlay h3{font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:.25rem;transform:translateY(8px);transition:transform .35s}
+    .p-item:hover .p-overlay h3{transform:translateY(0)}
+    .p-overlay span{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);display:block;transform:translateY(8px);transition:transform .35s .05s}
+    .p-item:hover .p-overlay span{transform:translateY(0)}
+    .p-tag{position:absolute;top:1rem;left:1rem;background:rgba(8,8,16,.78);backdrop-filter:blur(8px);border:1px solid var(--border);padding:.25rem .65rem;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--dim)}
+    .p-zoom{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.6);opacity:0;transition:opacity .3s,transform .3s;font-size:1.4rem;color:var(--cyan);pointer-events:none}
+    .p-item:hover .p-zoom{opacity:1;transform:translate(-50%,-50%) scale(1)}
+
+    /* ABOUT */
+    #about{background:var(--mid);padding:7rem 4rem}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+    .about-img-wrap{width:100%;aspect-ratio:3/4;overflow:hidden;border:1px solid var(--border);position:relative}
+    .about-img-wrap img{width:100%;height:100%;object-fit:cover;filter:saturate(.7) brightness(.85);transition:filter .4s}
+    .about-img-wrap:hover img{filter:saturate(1) brightness(1)}
+    .about-img-wrap::before{content:'';position:absolute;top:1.25rem;left:1.25rem;width:36px;height:36px;border-top:1px solid var(--cyan);border-left:1px solid var(--cyan);z-index:2}
+    .about-img-wrap::after{content:'';position:absolute;bottom:1.25rem;right:1.25rem;width:36px;height:36px;border-bottom:1px solid var(--cyan);border-right:1px solid var(--cyan);z-index:2}
+    .about-badge{position:absolute;bottom:-1.75rem;right:-1.75rem;background:var(--blue);padding:1.5rem;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;text-align:center;line-height:1.5;box-shadow:0 16px 40px rgba(79,129,247,.4)}
+    .about-visual{position:relative}
+    .about-content h2{margin-bottom:1.5rem}
+    .about-content p{color:var(--dim);font-size:.93rem;line-height:1.85;margin-bottom:1.25rem;font-weight:300}
+    .about-content p strong{color:var(--pink);font-weight:500}
+    .skills-list{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2rem}
+    .skill-pill{border:1px solid rgba(0,244,204,.2);padding:.4rem 1rem;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);transition:border-color .2s,color .2s,background .2s;cursor:default}
+    .skill-pill:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,244,204,.06)}
+
+    /* CONTACT */
+    #contact{background:var(--black);padding:7rem 4rem}
+    .contact-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+    .contact-left h2{margin-bottom:1.25rem}
+    .contact-left>p{color:var(--dim);font-size:.95rem;line-height:1.8;font-weight:300;margin-bottom:2.5rem}
+    .contact-items{display:flex;flex-direction:column;gap:1.25rem}
+    .contact-item{display:flex;align-items:center;gap:1.25rem;padding:1rem 1.25rem;border:1px solid var(--border);background:var(--card);transition:border-color .2s}
+    .contact-item:hover{border-color:rgba(0,244,204,.25)}
+    .contact-item-icon{width:36px;height:36px;background:rgba(0,244,204,.07);border:1px solid rgba(0,244,204,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--cyan)}
+    .contact-item-label{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:.15rem}
+    .contact-item a,.contact-item span{color:var(--dim);text-decoration:none;font-size:.875rem;transition:color .2s;display:block}
+    .contact-item a:hover{color:var(--white)}
+    .newsletter-box{background:var(--card);border:1px solid var(--border);padding:3rem;position:relative;overflow:hidden}
+    .newsletter-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--cyan),var(--pink))}
+    .newsletter-box h3{font-family:'Playfair Display',serif;font-size:1.6rem;margin-bottom:.65rem}
+    .newsletter-box p{color:var(--dim);font-size:.875rem;line-height:1.7;margin-bottom:2rem}
+    .newsletter-form{display:flex;flex-direction:column;gap:.85rem}
+    .newsletter-form input{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);color:var(--white);padding:.9rem 1.2rem;font-size:.875rem;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;width:100%;border-radius:2px}
+    .newsletter-form input::placeholder{color:var(--dim)}
+    .newsletter-form input:focus{border-color:var(--cyan);background:rgba(0,244,204,.04)}
+    .newsletter-form button{background:var(--blue);color:var(--white);border:none;padding:.95rem 2rem;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s,transform .2s;border-radius:2px}
+    .newsletter-form button:hover{opacity:.88;transform:translateY(-2px)}
+
+    /* FOOTER */
+    footer{background:var(--black);padding:2.5rem 4rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+    .footer-logo{font-weight:700;font-size:.82rem;letter-spacing:.22em;text-transform:uppercase}
+    .footer-logo span{color:var(--cyan)}
+    footer p{color:var(--dim);font-size:.72rem}
+    .footer-links{display:flex;gap:2rem}
+    .footer-links a{color:var(--dim);text-decoration:none;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+    .footer-links a:hover{color:var(--white)}
+
+    /* MODAL */
+    .modal-backdrop{position:fixed;inset:0;z-index:1000;background:rgba(8,8,16,.95);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s;padding:2rem}
+    .modal-backdrop.open{opacity:1;pointer-events:all}
+    .modal{background:var(--card);border:1px solid rgba(0,244,204,.15);width:100%;max-width:980px;max-height:90vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;transform:translateY(24px) scale(.97);transition:transform .35s;position:relative}
+    .modal-backdrop.open .modal{transform:translateY(0) scale(1)}
+    .modal::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--cyan),var(--pink))}
+    .modal-gallery{overflow:hidden;position:relative;background:var(--black);min-height:340px}
+    .modal-inner{display:flex;height:100%;transition:transform .4s ease}
+    .modal-gallery-img{flex-shrink:0;width:100%;height:100%;object-fit:contain;background:var(--black)}
+    .modal-nav{position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);display:flex;gap:.5rem;align-items:center}
+    .modal-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:background .2s,transform .2s}
+    .modal-dot.active{background:var(--cyan);transform:scale(1.3)}
+    .modal-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(8,8,16,.7);border:1px solid var(--border);color:var(--white);width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.9rem;transition:border-color .2s;z-index:2}
+    .modal-arrow:hover{border-color:var(--cyan)}
+    .modal-arrow.prev{left:.75rem}
+    .modal-arrow.next{right:.75rem}
+    .modal-info{padding:2.5rem;overflow-y:auto;display:flex;flex-direction:column;gap:1.25rem}
+    .modal-category{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--cyan)}
+    .modal-title{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;line-height:1.15}
+    .modal-desc{color:var(--dim);font-size:.875rem;line-height:1.8;font-weight:300}
+    .modal-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.25rem}
+    .modal-tag{border:1px solid rgba(0,244,204,.2);padding:.3rem .85rem;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+    .modal-close{position:absolute;top:1rem;right:1rem;z-index:10;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(8,8,16,.8);border:1px solid var(--border);color:var(--dim);cursor:pointer;font-size:1.1rem;transition:border-color .2s,color .2s}
+    .modal-close:hover{border-color:var(--cyan);color:var(--white)}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    /* MOBILE */
+    @media(max-width:900px){
+      nav{padding:1.1rem 1.5rem}nav ul{display:none}
+      #hero,#portfolio,#about,#contact{padding:5rem 1.5rem}
+      #stats{padding:4rem 1.5rem}
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .featured-grid{grid-template-columns:1fr}
+      .secondary-grid{grid-template-columns:1fr 1fr}
+      .p-item:nth-child(n){grid-column:span 1}
+      .about-grid,.contact-wrapper{grid-template-columns:1fr;gap:3rem}
+      .about-badge{right:0;bottom:-1rem}
+      footer{flex-direction:column;text-align:center;padding:2rem 1.5rem}
+      .footer-links{justify-content:center}
+      .hero-scroll-hint{display:none}
+      .modal{grid-template-columns:1fr;max-height:95vh}
+      .modal-gallery{min-height:260px}
+      .modal-info{padding:1.5rem}
+    }
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="#hero" class="nav-logo">CHONA<span class="accent">VERSE</span></a>
+  <ul>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="blob b3"></div><div class="blob b4"></div>
+  <div class="hero-grid"></div><div class="hero-vline"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Creative Direction · Industrial Design · Visual Systems</p>
+    <h1 class="hero-title">CHONA<span class="accent">VERSE</span></h1>
+    <p class="hero-tagline">Where form becomes argument.</p>
+    <p class="hero-sub">Industrial designer with a sharp eye for visual identity.<br/><strong>Design that solves, that you can touch, that speaks for itself.</strong></p>
+    <div class="hero-cta">
+      <a href="#portfolio" class="btn-primary">View Portfolio</a>
+      <a href="#contact" class="btn-secondary">Let's Talk</a>
+    </div>
+  </div>
+</section>
+
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <div class="ticker-item">Creative Direction <span class="ticker-dot"></span></div>
+    <div class="ticker-item">Industrial Design <span class="ticker-dot"></span></div>
+    <div class="ticker-item">Branding & Identity <span class="ticker-dot"></span></div>
+    <div class="ticker-item">Promotional Products <span class="ticker-dot"></span></div>
+    <div class="ticker-item">Team Leadership <span class="ticker-dot"></span></div>
+    <div class="ticker-item">Design Systems <span class="ticker-dot"></span></div>
+    <div class="ticker-item">Packaging <span class="ticker-dot"></span></div>
+    <div class="ticker-item">3D Visualization <span class="ticker-dot"></span></div>
+    <div class="ticker-item">Creative Direction <span class="ticker-dot"></span></div>
+    <div class="ticker-item">Industrial Design <span class="ticker-dot"></span></div>
+    <div class="ticker-item">Branding & Identity <span class="ticker-dot"></span></div>
+    <div class="ticker-item">Promotional Products <span class="ticker-dot"></span></div>
+    <div class="ticker-item">Team Leadership <span class="ticker-dot"></span></div>
+    <div class="ticker-item">Design Systems <span class="ticker-dot"></span></div>
+    <div class="ticker-item">Packaging <span class="ticker-dot"></span></div>
+    <div class="ticker-item">3D Visualization <span class="ticker-dot"></span></div>
+  </div>
+</div>
+
+<section id="stats">
+  <div class="stats-grid">
+    <div class="stat-cell reveal"><span class="stat-number"><span class="counter" data-target="3">0</span><span class="stat-suffix">+</span></span><p class="stat-desc">Years leading<br/>creative teams</p></div>
+    <div class="stat-cell reveal" style="transition-delay:.1s"><span class="stat-number"><span class="counter" data-target="200">0</span><span class="stat-suffix">+</span></span><p class="stat-desc">Projects delivered<br/>end to end</p></div>
+    <div class="stat-cell reveal" style="transition-delay:.2s"><span class="stat-number"><span class="counter" data-target="3">0</span></span><p class="stat-desc">Industries mastered:<br/>industrial, graphic & AI</p></div>
+    <div class="stat-cell reveal" style="transition-delay:.3s"><span class="stat-number"><span class="counter" data-target="100">0</span><span class="stat-suffix">%</span></span><p class="stat-desc">Focus on impact<br/>over decoration</p></div>
+  </div>
+</section>
+
+<section id="portfolio">
+  <div class="portfolio-intro reveal">
+    <div><p class="section-label">Portfolio</p><h2>Work that ships.</h2></div>
+    <p>Brand concepts, product visualization, packaging systems, and freelance industrial design.</p>
+  </div>
+
+  <!-- FEATURED: 3 big projects -->
+  <div class="featured-grid">
+
+    <!-- Lime Riot: click goes to case study page -->
+    <a href="lime-riot.html" class="f-item reveal" style="text-decoration:none">
+      <div class="f-label" style="color:#CAFF4C;border-color:rgba(202,255,76,.3)">Featured · AI Brand</div>
+      <img class="f-img" src="https://drive.google.com/thumbnail?id=1UOu4FqBi2a36iKapDDvmXE0QEEZ_jrGZ&sz=w900" alt="Lime Riot Energy"/>
+      <div class="f-overlay">
+        <h3>Lime Riot Energy</h3>
+        <span>Brand Identity · Packaging · AI Campaign</span>
+      </div>
+      <div class="f-zoom">→</div>
+    </a>
+
+    <!-- Veero: links to case study -->
+    <a href="veero.html" class="f-item reveal" style="transition-delay:.1s;text-decoration:none">
+      <div class="f-label" style="color:#D9A89A;border-color:rgba(196,137,122,.3)">Featured · In Production</div>
+      <img class="f-img" src="https://images.unsplash.com/photo-1570194065650-d99fb4b38db6?w=700&q=80&fit=crop" alt="Veero skincare brand" style="filter:grayscale(20%) brightness(.75);aspect-ratio:3/4"/>
+      <div class="f-overlay">
+        <h3>Veero</h3>
+        <span>Skincare Brand · Packaging · Identity</span>
+      </div>
+      <div class="f-zoom">→</div>
+    </a>
+
+    <!-- Fast food brand: coming soon -->
+    <div class="f-item reveal" style="transition-delay:.2s;cursor:default">
+      <div class="f-label">Featured · Coming Soon</div>
+      <div class="f-coming">
+        <div class="f-coming-icon">◎</div>
+        <p class="f-coming-text">Case study in progress</p>
+        <p class="f-coming-label">Fanny Flan</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECONDARY: rest of portfolio -->
+  <div class="secondary-grid" id="portfolio-grid">
+
+    <div class="p-item reveal" data-project="0">
+      <div class="p-tag">Packaging</div>
+      <img class="p-img" src="https://drive.google.com/thumbnail?id=1XNRxZMWySN-J9u0VX6v2wcsFlVcjo9Vn&sz=w800" alt="Packaging and proof systems" loading="lazy"/>
+      <div class="p-overlay"><h3>Packaging & Proof Systems</h3><span>Packaging · Proofing · Production</span></div>
+      <div class="p-zoom">⊕</div>
+    </div>
+
+    <div class="p-item reveal" style="transition-delay:.06s" data-project="1">
+      <div class="p-tag">Kit Renders</div>
+      <img class="p-img" src="https://drive.google.com/thumbnail?id=1nuiz6F7UvybNbTwayZy0LOc4dgtBaFU4&sz=w800" alt="Automated kit renders" loading="lazy"/>
+      <div class="p-overlay"><h3>Automated Kit Render System</h3><span>Pipeline · Automation · Scale</span></div>
+      <div class="p-zoom">⊕</div>
+    </div>
+
+    <div class="p-item reveal" style="transition-delay:.1s" data-project="2">
+      <div class="p-tag">Product</div>
+      <img class="p-img" src="https://drive.google.com/thumbnail?id=1JmH-tjuqvFD83kL8JrBVDEMP6ub0Q2XC&sz=w700" alt="RUPT product renders" loading="lazy"/>
+      <div class="p-overlay"><h3>RUPT Product Visualization</h3><span>Product Renders · 3D · Catalog</span></div>
+      <div class="p-zoom">⊕</div>
+    </div>
+
+    <div class="p-item reveal" style="transition-delay:.13s" data-project="3">
+      <div class="p-tag">Client Work</div>
+      <img class="p-img" src="https://drive.google.com/thumbnail?id=17Ewy_mwKuxQUiu-bh0ZwMPlu-_zuqQmY&sz=w700" alt="Custom client renders" loading="lazy"/>
+      <div class="p-overlay"><h3>Custom Client Renders</h3><span>Branded Merchandise · Mockups</span></div>
+      <div class="p-zoom">⊕</div>
+    </div>
+
+    <div class="p-item reveal" style="transition-delay:.16s" data-project="4">
+      <div class="p-tag">Freelance · Industrial</div>
+      <img class="p-img" src="https://drive.google.com/thumbnail?id=1glvudwPM0bM33vXdRmNHaIsjp3uieD-D&sz=w800" alt="Mindstone wearable" loading="lazy"/>
+      <div class="p-overlay"><h3>Mindstone Wearable Device</h3><span>Industrial Design · UX · Healthcare</span></div>
+      <div class="p-zoom">⊕</div>
+    </div>
+
+    <div class="p-item reveal" style="transition-delay:.19s" data-project="5">
+      <div class="p-tag">Freelance · 3D</div>
+      <img class="p-img" src="https://drive.google.com/thumbnail?id=1Sqs09IwIAh0IRWWB7TZQ5Zukz4wMeYWa&sz=w700" alt="Coffee machine" loading="lazy"/>
+      <div class="p-overlay"><h3>Coffee Machine Design</h3><span>Industrial Design · 3D Render</span></div>
+      <div class="p-zoom">⊕</div>
+    </div>
+
+    <div class="p-item reveal" style="transition-delay:.22s" data-project="6">
+      <div class="p-tag">Freelance · Industrial</div>
+      <img class="p-img" src="https://drive.google.com/thumbnail?id=1Xv7_bqhO3yrbgkmmTvzyh5CVhOz2lpxZ&sz=w700" alt="FANSTOVE" loading="lazy"/>
+      <div class="p-overlay"><h3>FANSTOVE Outdoor Product</h3><span>Industrial Design · 3D · Freelance</span></div>
+      <div class="p-zoom">⊕</div>
+    </div>
+
+    <div class="p-item reveal" style="transition-delay:.25s" data-project="7">
+      <div class="p-tag">Freelance · Packaging</div>
+      <img class="p-img" src="https://drive.google.com/thumbnail?id=1snntW5QxLJHEJVhzT6s-LoQwvJfOx32M&sz=w700" alt="Xania cosmetics" loading="lazy"/>
+      <div class="p-overlay"><h3>Xania Cosmetics</h3><span>Packaging Design · Industrial · Freelance</span></div>
+      <div class="p-zoom">⊕</div>
+    </div>
+
+    <div class="p-item reveal" style="transition-delay:.28s" data-project="8">
+      <div class="p-tag">Freelance · Industrial</div>
+      <img class="p-img" src="https://drive.google.com/thumbnail?id=1N7fYlNai8sSfQsgwYQAXFoNNMTYSCY4i&sz=w700" alt="Modular cabinet" loading="lazy"/>
+      <div class="p-overlay"><h3>Modular Cabinet System</h3><span>Industrial Design · Furniture · Freelance</span></div>
+      <div class="p-zoom">⊕</div>
+    </div>
+
+  </div>
+</section>
+
+<section id="about">
+  <p class="section-label">About</p>
+  <div class="about-grid">
+    <div class="about-visual reveal">
+      <div class="about-img-wrap">
+        <img src="https://drive.google.com/thumbnail?id=1-O9Pe6osJndtrPFzi9e-hXKINHGQYVmE&sz=w800" alt="Chona"/>
+      </div>
+      <div class="about-badge">Creative<br/>Director</div>
+    </div>
+    <div class="about-content reveal" style="transition-delay:.15s">
+      <h2>Ignacio.<br/>They call me Chona.</h2>
+      <p>Industrial designer with a sharp eye for visual identity. Currently <strong>Design Director</strong> at a promotional products company, leading from concept through production.</p>
+      <p>My universe is where form is not decoration: <strong>it is argument</strong>. Every visual decision carries a technical and aesthetic reason at the same time.</p>
+      <p>I believe in design that solves real problems, that you can hold, that communicates without needing explanation.</p>
+      <div class="skills-list">
+        <span class="skill-pill">Creative Direction</span><span class="skill-pill">Industrial Design</span>
+        <span class="skill-pill">Branding</span><span class="skill-pill">3D Visualization</span>
+        <span class="skill-pill">Packaging</span><span class="skill-pill">Team Leadership</span>
+        <span class="skill-pill">Design Systems</span><span class="skill-pill">Promotional Products</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <p class="section-label">Contact</p>
+  <div class="contact-wrapper">
+    <div class="contact-left reveal">
+      <h2>Let's work<br/>together.</h2>
+      <p>If you have a project that needs real design direction and criteria, let's talk. Available for projects, consulting, and creative leadership roles.</p>
+      <div class="contact-items">
+        <div class="contact-item"><div class="contact-item-icon">✉</div><div><span class="contact-item-label">Email</span><a href="mailto:ignaciotomasvera@gmail.com">ignaciotomasvera@gmail.com</a></div></div>
+        <div class="contact-item"><div class="contact-item-icon">in</div><div><span class="contact-item-label">LinkedIn</span><a href="https://www.linkedin.com/in/ignaciotomasverasalama" target="_blank">linkedin.com/in/ignaciotomasverasalama</a></div></div>
+        <div class="contact-item"><div class="contact-item-icon">◎</div><div><span class="contact-item-label">Location</span><span>Argentina, available remotely</span></div></div>
+      </div>
+    </div>
+    <div class="newsletter-box reveal" style="transition-delay:.15s">
+      <h3>Stay in the loop.</h3>
+      <p>Projects, design thinking, and what is happening in the Chonaverse. No spam. Only what is worth reading.</p>
+      <div class="newsletter-form">
+        <input type="text" placeholder="Your name"/>
+        <input type="email" placeholder="Your email"/>
+        <button type="button">Subscribe</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">CHONA<span>VERSE</span></span>
+  <p>2026 Chonaverse. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#portfolio">Portfolio</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modal-close">✕</button>
+    <div class="modal-gallery">
+      <div class="modal-inner" id="modal-inner"></div>
+      <button class="modal-arrow prev" id="modal-prev">‹</button>
+      <button class="modal-arrow next" id="modal-next">›</button>
+      <div class="modal-nav" id="modal-dots"></div>
+    </div>
+    <div class="modal-info">
+      <p class="modal-category" id="modal-cat"></p>
+      <h3 class="modal-title" id="modal-title"></h3>
+      <p class="modal-desc" id="modal-desc"></p>
+      <div class="modal-tags" id="modal-tags"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const PROJECTS = [
+  {
+    title:"Packaging and Proof Systems",
+    category:"Promotional Products · RUPT",
+    desc:"End-to-end packaging design and proof system for RUPT's branded merchandise line. Print-ready artwork, die-lines, and a proofing workflow that covers custom boxes, inserts, and branded packaging for 10+ SKUs.",
+    tags:["Packaging","Artwork","Production","Print-Ready"],
+    images:["https://drive.google.com/thumbnail?id=1XNRxZMWySN-J9u0VX6v2wcsFlVcjo9Vn&sz=w1200","https://drive.google.com/thumbnail?id=1fA_TzOfx_l9Uk0j2uu4ethcDmYRRN7Zs&sz=w1200","https://drive.google.com/thumbnail?id=109Qm3IST719hNemISteDyDh7rBfmHa-R&sz=w1200","https://drive.google.com/thumbnail?id=1mCODB4svIwTGAK9BDKLViLNCy8B0sky0&sz=w1200","https://drive.google.com/thumbnail?id=1uBGr6QRJhkB6J8Qv1eplDMASpSkH2f6O&sz=w1200"]
+  },
+  {
+    title:"Automated Kit Render System",
+    category:"RUPT · Creative Systems",
+    desc:"A scripted pipeline that generates branded kit presentation renders at scale. Client-ready visuals in a fraction of manual production time, enabling the team to process dozens of kit configurations per week.",
+    tags:["Automation","Pipeline","3D Render","Scale"],
+    images:["https://drive.google.com/thumbnail?id=1nuiz6F7UvybNbTwayZy0LOc4dgtBaFU4&sz=w1200","https://drive.google.com/thumbnail?id=1mt-iwfRbN3yI46ykQFi5mUdMinxtfmHi&sz=w1200","https://drive.google.com/thumbnail?id=1aN2CxVhKilxYDqmxZRzi4bkPaah2qjQ0&sz=w1200","https://drive.google.com/thumbnail?id=17Ewy_mwKuxQUiu-bh0ZwMPlu-_zuqQmY&sz=w1200","https://drive.google.com/thumbnail?id=1cFyHEyJmw7w6t7_QuOF4lw-H1ylUmW4N&sz=w1200"]
+  },
+  {
+    title:"RUPT Product Visualization",
+    category:"RUPT · Catalog and Ecommerce",
+    desc:"Studio-quality white-background product renders for RUPT's full catalog. Bags, tech accessories, and lifestyle products photographed and rendered to a strict brand grid and lighting system for ecommerce and print.",
+    tags:["Product Renders","White Background","Catalog","Ecommerce","3D"],
+    images:["https://drive.google.com/thumbnail?id=1JmH-tjuqvFD83kL8JrBVDEMP6ub0Q2XC&sz=w1200","https://drive.google.com/thumbnail?id=1gTgEQIPDMKZ2K2-BuDpMUamfqY2w3Ylo&sz=w1200","https://drive.google.com/thumbnail?id=12dTopSyQBkwtaMQnIYWacJ1A5ZITt3N2&sz=w1200","https://drive.google.com/thumbnail?id=1lhJlBz-tnJmzqIB39BdtHd5_Da_oOIqR&sz=w1200","https://drive.google.com/thumbnail?id=14Tyq6YVbvkrNECOU12gyifNIONnGdXcA&sz=w1200"]
+  },
+  {
+    title:"Custom Client Renders",
+    category:"RUPT · Client Mockups",
+    desc:"Branded product mockups for enterprise clients including Intermountain Health and United Prairie. Each render applies the client logo and colorway to the RUPT product line as pre-production approval assets.",
+    tags:["Client Mockups","Branded Merchandise","B2B"],
+    images:["https://drive.google.com/thumbnail?id=17Ewy_mwKuxQUiu-bh0ZwMPlu-_zuqQmY&sz=w1200","https://drive.google.com/thumbnail?id=1cFyHEyJmw7w6t7_QuOF4lw-H1ylUmW4N&sz=w1200","https://drive.google.com/thumbnail?id=1UhaapuA4AG9Bw9OvtZ14EpHsb_th_qbR&sz=w1200","https://drive.google.com/thumbnail?id=1JsR5smvfwdUY08OnlXGmInpKM6nz70dn&sz=w1200"]
+  },
+  {
+    title:"Mindstone Wearable Device",
+    category:"Freelance · Industrial Design",
+    desc:"Physical and UX concept for Mindstone, a smart wearable for parents of children with anxiety disorders. Biometric sensing (GSR, HR, temperature) paired with a guided breathing app. Deliverables: CMF, industrial design concepts, and presentation boards.",
+    tags:["Wearable","Healthcare","Industrial Design","UX","Freelance"],
+    images:["https://drive.google.com/thumbnail?id=1glvudwPM0bM33vXdRmNHaIsjp3uieD-D&sz=w1200","https://drive.google.com/thumbnail?id=1U0Grg7Z_ShhFHO0XNWjKnk_Awekqqcjx&sz=w1200","https://drive.google.com/thumbnail?id=17hnTcsdfb7eot_28k7J_JRlLcbzptQJP&sz=w1200","https://drive.google.com/thumbnail?id=1hdqCZVZ2JVebCxbEFif3JwRaf1rdpAcK&sz=w1200"]
+  },
+  {
+    title:"Coffee Machine Design",
+    category:"Freelance · Industrial Design",
+    desc:"Compact home coffee machine. Form language, ergonomics, and material selection balancing premium aesthetics with manufacturability. Output: 3D renders, exploded views, and a client presentation.",
+    tags:["Industrial Design","3D Render","Consumer Product","Freelance"],
+    images:["https://drive.google.com/thumbnail?id=1Sqs09IwIAh0IRWWB7TZQ5Zukz4wMeYWa&sz=w1200","https://drive.google.com/thumbnail?id=1LpqMP21J2XHlJv33PCsR1BeTTUUExle6&sz=w1200","https://drive.google.com/thumbnail?id=1xiwe5dVnCJATF_y7gHTR-nJWXPEuz5oy&sz=w1200","https://drive.google.com/thumbnail?id=1Pz62NWHVmLP4D7JHmN7xDwrB6IcsxMWQ&sz=w1200"]
+  },
+  {
+    title:"FANSTOVE Outdoor Product",
+    category:"Freelance · Industrial Design",
+    desc:"Outdoor fan-stove hybrid. Structural integrity, heat management, and user-safe interaction for a portable cooking and ventilation device. Output: CAD-ready models and presentation renders.",
+    tags:["Industrial Design","Outdoor","3D CAD","Freelance"],
+    images:["https://drive.google.com/thumbnail?id=1Xv7_bqhO3yrbgkmmTvzyh5CVhOz2lpxZ&sz=w1200","https://drive.google.com/thumbnail?id=1zDhA5a885aOQWDHXxeWGjw--f_FtnRNN&sz=w1200","https://drive.google.com/thumbnail?id=1jyOfLIlAGhe9UDpsKISX-ukZRNOAAMgK&sz=w1200","https://drive.google.com/thumbnail?id=1_4Bb-3x_xYs39oBs3-sCFnTwHRDyTbr7&sz=w1200"]
+  },
+  {
+    title:"Xania Cosmetics Packaging",
+    category:"Freelance · Packaging",
+    desc:"Skincare line packaging for Xania Cosmetics. Label system, bottle hierarchy, and retail shelf positioning. The visual language bridges clinical authority with approachable femininity.",
+    tags:["Packaging","Cosmetics","Label Design","Freelance"],
+    images:["https://drive.google.com/thumbnail?id=1snntW5QxLJHEJVhzT6s-LoQwvJfOx32M&sz=w1200","https://drive.google.com/thumbnail?id=1arggq59jHoOOnlBhicLG21_1Swp7gE7J&sz=w1200","https://drive.google.com/thumbnail?id=1QQ4S3gbTc2LcHZiKlkddaCUFydplsUzv&sz=w1200","https://drive.google.com/thumbnail?id=1Xz3VY8l6MEOmYI9IuDZnpcjVCnB8aBq-&sz=w1200"]
+  },
+  {
+    title:"Modular Cabinet System",
+    category:"Freelance · Furniture",
+    desc:"Modular residential cabinet system with tool-less assembly and interchangeable panel configurations. Wood veneer and powder-coated steel palette. Output: full 3D model, technical drawings, and production documentation.",
+    tags:["Furniture","Modular","Industrial Design","3D","Freelance"],
+    images:["https://drive.google.com/thumbnail?id=1N7fYlNai8sSfQsgwYQAXFoNNMTYSCY4i&sz=w1200","https://drive.google.com/thumbnail?id=196QBUz8M1kR3hvxECpBLtqGYbeRCEdYH&sz=w1200","https://drive.google.com/thumbnail?id=1uJmqoF7bd3TNzAttRNHUC0zls7wDLOF3&sz=w1200","https://drive.google.com/thumbnail?id=1lQIchkVQkBaAyvjuxmAyFaPzj_TRs9UQ&sz=w1200"]
+  }
+];
+
+let cur=0,active=null;
+const backdrop=document.getElementById('modal-backdrop');
+const mInner=document.getElementById('modal-inner');
+const mDots=document.getElementById('modal-dots');
+const mCat=document.getElementById('modal-cat');
+const mTitle=document.getElementById('modal-title');
+const mDesc=document.getElementById('modal-desc');
+const mTags=document.getElementById('modal-tags');
+const mPrev=document.getElementById('modal-prev');
+const mNext=document.getElementById('modal-next');
+
+function openModal(idx){
+  active=PROJECTS[idx]; cur=0;
+  mInner.innerHTML=active.images.map(s=>`<img class="modal-gallery-img" src="${s}" loading="lazy"/>`).join('');
+  const single=active.images.length===1;
+  mPrev.style.display=single?'none':'';
+  mNext.style.display=single?'none':'';
+  mDots.innerHTML=active.images.map((_,i)=>`<div class="modal-dot${i===0?' active':''}" data-i="${i}"></div>`).join('');
+  goTo(0,true);
+  mCat.textContent=active.category;
+  mTitle.textContent=active.title;
+  mDesc.textContent=active.desc;
+  mTags.innerHTML=active.tags.map(t=>`<span class="modal-tag">${t}</span>`).join('');
+  backdrop.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){backdrop.classList.remove('open');document.body.style.overflow='';}
+function goTo(i,instant){
+  cur=(i+active.images.length)%active.images.length;
+  if(instant)mInner.style.transition='none';
+  mInner.style.transform=`translateX(-${cur*100}%)`;
+  if(instant)setTimeout(()=>mInner.style.transition='',20);
+  document.querySelectorAll('.modal-dot').forEach((d,j)=>d.classList.toggle('active',j===cur));
+}
+mPrev.addEventListener('click',e=>{e.stopPropagation();goTo(cur-1)});
+mNext.addEventListener('click',e=>{e.stopPropagation();goTo(cur+1)});
+document.getElementById('modal-close').addEventListener('click',closeModal);
+backdrop.addEventListener('click',e=>{if(e.target===backdrop)closeModal()});
+mDots.addEventListener('click',e=>{if(e.target.dataset.i!==undefined)goTo(+e.target.dataset.i)});
+document.addEventListener('keydown',e=>{
+  if(!backdrop.classList.contains('open'))return;
+  if(e.key==='Escape')closeModal();
+  if(e.key==='ArrowLeft')goTo(cur-1);
+  if(e.key==='ArrowRight')goTo(cur+1);
+});
+document.querySelectorAll('.p-item[data-project]').forEach(el=>{
+  el.addEventListener('click',()=>openModal(+el.dataset.project));
+});
+
+// Nav shrink
+const nav=document.getElementById('main-nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+
+// Reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Counters
+function animateCounter(el){
+  const t=+el.dataset.target,d=1800,s=performance.now(),ease=p=>1-Math.pow(1-p,3);
+  const tick=n=>{const p=Math.min((n-s)/d,1);el.textContent=Math.round(ease(p)*t);if(p<1)requestAnimationFrame(tick)};
+  requestAnimationFrame(tick);
+}
+const cObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){animateCounter(e.target);cObs.unobserve(e.target);}});
+},{threshold:0.5});
+document.querySelectorAll('.counter').forEach(el=>cObs.observe(el));
+</script>
+</body>
+</html>
