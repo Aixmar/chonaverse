@@ -27,12 +27,20 @@
     /* HERO */
     #hero{min-height:100vh;display:flex;align-items:flex-end;padding:8rem 4rem 5rem;position:relative;overflow:hidden}
     .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 100% 80% at 30% 60%,#1a0e0a 0%,#080810 70%)}
-    .blob{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;animation:drift 18s ease-in-out infinite alternate}
+    .hero-slides{position:absolute;inset:0;z-index:0;pointer-events:none;background:var(--black)}
+    .hero-slides::after{content:'';position:absolute;inset:0;z-index:2;background:linear-gradient(90deg,rgba(8,8,16,.9) 0%,rgba(8,8,16,.68) 48%,rgba(8,8,16,.46) 100%),radial-gradient(ellipse at 18% 72%,rgba(8,8,16,.88) 0%,rgba(8,8,16,.44) 58%,rgba(8,8,16,.7) 100%)}
+    .hero-slide{position:absolute;inset:-4%;background-size:cover;background-position:center;opacity:0;filter:saturate(.95) contrast(1.04);transform:scale(1.04);animation:heroFade 32s ease-in-out infinite}
+    .hero-slide:first-child{opacity:.42}
+    .hero-slide:nth-child(2){animation-delay:8s}
+    .hero-slide:nth-child(3){animation-delay:16s}
+    .hero-slide:nth-child(4){animation-delay:24s}
+    @keyframes heroFade{0%,22%{opacity:.42;transform:scale(1.04)}30%,100%{opacity:0;transform:scale(1.09)}}
+    .blob{position:absolute;z-index:1;border-radius:50%;filter:blur(120px);pointer-events:none;animation:drift 18s ease-in-out infinite alternate}
     .b1{width:600px;height:600px;background:#3d1a14;top:-15%;left:-8%;opacity:.55}
     .b2{width:400px;height:400px;background:#1a2e1a;bottom:-15%;right:5%;opacity:.4;animation-delay:-8s}
     @keyframes drift{from{transform:translate(0,0)scale(1)}to{transform:translate(25px,20px)scale(1.05)}}
-    .dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(196,137,122,.05)1px,transparent 1px);background-size:32px 32px;pointer-events:none}
-    .hero-content{position:relative;z-index:1;max-width:820px}
+    .dots{position:absolute;inset:0;z-index:1;background-image:radial-gradient(circle,rgba(196,137,122,.05)1px,transparent 1px);background-size:32px 32px;pointer-events:none}
+    .hero-content{position:relative;z-index:2;max-width:820px}
     .eyebrow{font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;color:var(--rose);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;opacity:0;animation:up .8s .2s forwards}
     .eyebrow::before{content:'';display:inline-block;width:32px;height:1px;background:var(--rose)}
     .hero-title{font-family:'Playfair Display',serif;font-size:clamp(4rem,10vw,9rem);font-weight:900;line-height:.88;letter-spacing:-.03em;opacity:0;animation:up .8s .35s forwards;color:var(--cream)}
@@ -101,7 +109,6 @@
     .cat-header{margin-bottom:2rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(196,137,122,.15)}
     .cat-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--cream);margin-bottom:.35rem}
     .cat-desc{font-size:.82rem;color:var(--dim);font-weight:300;line-height:1.6}
-    .cat-count{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--rose);opacity:.6;margin-bottom:.5rem;display:block}
     .thumb-grid{display:flex;flex-wrap:wrap;gap:.75rem}
     .thumb{overflow:hidden;cursor:pointer;border:1px solid rgba(196,137,122,.1);flex-shrink:0;position:relative;transition:border-color .25s,transform .25s}
     .thumb:hover{border-color:rgba(196,137,122,.5);transform:scale(1.03)}
@@ -129,7 +136,7 @@
       .hero-meta{gap:1.5rem}
       footer{flex-direction:column;text-align:center;padding:2rem 1.5rem}
     }
-    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.hero-slide:first-child{opacity:.42!important}}
   </style>
 </head>
 <body>
@@ -141,6 +148,12 @@
 
 <section id="hero">
   <div class="hero-bg"></div>
+  <div class="hero-slides" aria-hidden="true">
+    <div class="hero-slide" style="background-image:url('assets/images/Veero/veero%20-%20packaging%20-%2005.png')"></div>
+    <div class="hero-slide" style="background-image:url('assets/images/Veero/veero%20-%20banner%20-%2001.png')"></div>
+    <div class="hero-slide" style="background-image:url('assets/images/Veero/veero%20-%20billboard%20-%2001.png')"></div>
+    <div class="hero-slide" style="background-image:url('assets/images/Veero/veero%20-%20brand%20assets%20-%2001.png')"></div>
+  </div>
   <div class="blob b1"></div><div class="blob b2"></div>
   <div class="dots"></div>
   <div class="hero-content">
@@ -178,44 +191,71 @@
   <!-- PACKAGING -->
   <div class="cat-block reveal">
     <div class="cat-header">
-      <span class="cat-count">In progress</span>
       <h3 class="cat-title">Packaging</h3>
-      <p class="cat-desc">Container design across the core Veero line: primary bottle, secondary treatments, outer box, and insert card. The packaging system uses matte ceramic-effect finishes, linen-texture stock, and hot-stamped wordmarks. No gloss anywhere in the system. Final renders coming as the project is finalized.</p>
+      <p class="cat-desc">Container design across the core Veero line: primary bottle, secondary treatments, outer box, and insert card. The packaging system uses soft cosmetic finishes, calm color blocking, and refined product hierarchy.</p>
     </div>
     <div class="thumb-grid" data-cat="packaging">
-      <div class="thumb sq" data-src="https://images.unsplash.com/photo-1570194065650-d99fb4b38db6?w=900&q=80&fit=crop"><img src="https://images.unsplash.com/photo-1570194065650-d99fb4b38db6?w=400&q=80&fit=crop" loading="lazy"/><span class="thumb-num">Ref 01</span></div>
-      <div class="thumb sq" data-src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=900&q=80&fit=crop"><img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=400&q=80&fit=crop" loading="lazy"/><span class="thumb-num">Ref 02</span></div>
-      <div class="thumb sq" data-src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=900&q=80&fit=crop"><img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400&q=80&fit=crop" loading="lazy"/><span class="thumb-num">Ref 03</span></div>
+      <div class="thumb sq" data-src="assets/images/Veero/veero%20-%20packaging%20-%2004.png"><img src="assets/images/Veero/veero%20-%20packaging%20-%2004.png" loading="lazy"/><span class="thumb-num">01</span></div>
+      <div class="thumb sq" data-src="assets/images/Veero/veero%20-%20packaging%20-%2005.png"><img src="assets/images/Veero/veero%20-%20packaging%20-%2005.png" loading="lazy"/><span class="thumb-num">02</span></div>
+      <div class="thumb sq" data-src="assets/images/Veero/veero%20-%20packaging%20-%2006.png"><img src="assets/images/Veero/veero%20-%20packaging%20-%2006.png" loading="lazy"/><span class="thumb-num">03</span></div>
+      <div class="thumb sq" data-src="assets/images/Veero/veero%20-%20packaging-%2007.png"><img src="assets/images/Veero/veero%20-%20packaging-%2007.png" loading="lazy"/><span class="thumb-num">04</span></div>
+      <div class="thumb sq" data-src="assets/images/Veero/veero%20-%20packaging%20-%2008.png"><img src="assets/images/Veero/veero%20-%20packaging%20-%2008.png" loading="lazy"/><span class="thumb-num">05</span></div>
+      <div class="thumb sq" data-src="assets/images/Veero/veero%20-%20packaging%20-%2009.png"><img src="assets/images/Veero/veero%20-%20packaging%20-%2009.png" loading="lazy"/><span class="thumb-num">06</span></div>
+      <div class="thumb sq" data-src="assets/images/Veero/veero%20-%20packaging%20-%2010.png"><img src="assets/images/Veero/veero%20-%20packaging%20-%2010.png" loading="lazy"/><span class="thumb-num">07</span></div>
+      <div class="thumb sq" data-src="assets/images/Veero/veero%20-%20packaging%20-%2011.png"><img src="assets/images/Veero/veero%20-%20packaging%20-%2011.png" loading="lazy"/><span class="thumb-num">08</span></div>
+      <div class="thumb sq" data-src="assets/images/Veero/veero%20-%20packaging%20-%2012.png"><img src="assets/images/Veero/veero%20-%20packaging%20-%2012.png" loading="lazy"/><span class="thumb-num">09</span></div>
     </div>
   </div>
 
-  <!-- MATERIAL SYSTEM -->
+  <!-- BANNERS -->
   <div class="cat-block reveal">
     <div class="cat-header">
-      <span class="cat-count">6 materials</span>
-      <h3 class="cat-title">Material System</h3>
-      <p class="cat-desc">Six surfaces define the Veero palette: Blush Rose (primary container, matte ceramic), Sage Mist (frosted glass, recovery line), Midnight Ink (overnight range, deep navy-charcoal), Ivory Linen Stock (outer box, 400gsm uncoated), Deep Garnet (limited edition and gifting), and Alabaster White (wordmark surface, hot-stamped or debossed). Each material was chosen for how it reads at touch and from shelf distance.</p>
+      <h3 class="cat-title">Banners</h3>
+      <p class="cat-desc">Horizontal campaign compositions for digital advertising, launch pages, and social headers. These layouts test the Veero identity at wider aspect ratios while keeping the product system calm and premium.</p>
     </div>
-    <div class="thumb-grid" data-cat="materials">
-      <div class="thumb sq" style="cursor:default;background:linear-gradient(135deg,#c4897a,#f0ded8)"></div>
-      <div class="thumb sq" style="cursor:default;background:linear-gradient(135deg,#8a9e8c,#d8e4d9)"></div>
-      <div class="thumb sq" style="cursor:default;background:linear-gradient(135deg,#1a1a2e,#3d3d6e)"></div>
-      <div class="thumb sq" style="cursor:default;background:linear-gradient(135deg,#f0ead8,#d4c9a8)"></div>
-      <div class="thumb sq" style="cursor:default;background:linear-gradient(135deg,#2e1a1a,#8a4545)"></div>
-      <div class="thumb sq" style="cursor:default;background:linear-gradient(135deg,#e8e4dc,#f8f6f2)"></div>
+    <div class="thumb-grid" data-cat="banners">
+      <div class="thumb wide" data-src="assets/images/Veero/veero%20-%20banner%20-%2001.png"><img src="assets/images/Veero/veero%20-%20banner%20-%2001.png" loading="lazy"/><span class="thumb-num">01</span></div>
+      <div class="thumb wide" data-src="assets/images/Veero/veero%20-%20banner%20-%2002.png"><img src="assets/images/Veero/veero%20-%20banner%20-%2002.png" loading="lazy"/><span class="thumb-num">02</span></div>
+      <div class="thumb wide" data-src="assets/images/Veero/veero%20-%20banner%20-%2003.png"><img src="assets/images/Veero/veero%20-%20banner%20-%2003.png" loading="lazy"/><span class="thumb-num">03</span></div>
+      <div class="thumb wide" data-src="assets/images/Veero/veero%20-%20banner%20-%2004.png"><img src="assets/images/Veero/veero%20-%20banner%20-%2004.png" loading="lazy"/><span class="thumb-num">04</span></div>
+      <div class="thumb wide" data-src="assets/images/Veero/veero%20-%20banner%20-%2005.png"><img src="assets/images/Veero/veero%20-%20banner%20-%2005.png" loading="lazy"/><span class="thumb-num">05</span></div>
+      <div class="thumb wide" data-src="assets/images/Veero/veero%20-%20banner%20-%2006.png"><img src="assets/images/Veero/veero%20-%20banner%20-%2006.png" loading="lazy"/><span class="thumb-num">06</span></div>
+      <div class="thumb wide" data-src="assets/images/Veero/veero%20-%20banner%20-%2007.png"><img src="assets/images/Veero/veero%20-%20banner%20-%2007.png" loading="lazy"/><span class="thumb-num">07</span></div>
+      <div class="thumb wide" data-src="assets/images/Veero/veero%20-%20banner%20-%2008.png"><img src="assets/images/Veero/veero%20-%20banner%20-%2008.png" loading="lazy"/><span class="thumb-num">08</span></div>
+      <div class="thumb wide" data-src="assets/images/Veero/veero%20-%20banner%20-%2009.png"><img src="assets/images/Veero/veero%20-%20banner%20-%2009.png" loading="lazy"/><span class="thumb-num">09</span></div>
+      <div class="thumb wide" data-src="assets/images/Veero/veero%20-%20banner%20-%2010.png"><img src="assets/images/Veero/veero%20-%20banner%20-%2010.png" loading="lazy"/><span class="thumb-num">10</span></div>
+      <div class="thumb wide" data-src="assets/images/Veero/veero%20-%20banner%20-%2011.png"><img src="assets/images/Veero/veero%20-%20banner%20-%2011.png" loading="lazy"/><span class="thumb-num">11</span></div>
+      <div class="thumb wide" data-src="assets/images/Veero/veero%20-%20banner%20-%2012.png"><img src="assets/images/Veero/veero%20-%20banner%20-%2012.png" loading="lazy"/><span class="thumb-num">12</span></div>
+      <div class="thumb wide" data-src="assets/images/Veero/veero%20-%20banner%20-%2013.png"><img src="assets/images/Veero/veero%20-%20banner%20-%2013.png" loading="lazy"/><span class="thumb-num">13</span></div>
+      <div class="thumb wide" data-src="assets/images/Veero/veero%20-%20banner%20-%2014.png"><img src="assets/images/Veero/veero%20-%20banner%20-%2014.png" loading="lazy"/><span class="thumb-num">14</span></div>
     </div>
   </div>
 
-  <!-- IDENTITY REFERENCES -->
+  <!-- BILLBOARDS -->
   <div class="cat-block reveal">
     <div class="cat-header">
-      <span class="cat-count">Visual direction</span>
-      <h3 class="cat-title">Identity Direction</h3>
-      <p class="cat-desc">The Veero visual identity draws from high-end stationery, fine ceramics, and editorial fashion. No pharmaceutical references. No before-and-after logic. No anti-aging language. The type system uses a refined serif for display and a geometric sans for body, with generous spacing throughout.</p>
+      <h3 class="cat-title">Billboards</h3>
+      <p class="cat-desc">Large-format advertising studies. These pieces show how the brand behaves in environmental placements where the name, product silhouette, and quiet visual confidence need to read instantly.</p>
     </div>
-    <div class="thumb-grid" data-cat="identity">
-      <div class="thumb wide" data-src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=1200&q=80&fit=crop"><img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=500&q=80&fit=crop" loading="lazy"/><span class="thumb-num">Ref A</span></div>
-      <div class="thumb wide" data-src="https://images.unsplash.com/photo-1503602642458-232111445657?w=1200&q=80&fit=crop"><img src="https://images.unsplash.com/photo-1503602642458-232111445657?w=500&q=80&fit=crop" loading="lazy"/><span class="thumb-num">Ref B</span></div>
+    <div class="thumb-grid" data-cat="billboards">
+      <div class="thumb wide" data-src="assets/images/Veero/veero%20-%20billboard%20-%2001.png"><img src="assets/images/Veero/veero%20-%20billboard%20-%2001.png" loading="lazy"/><span class="thumb-num">01</span></div>
+      <div class="thumb wide" data-src="assets/images/Veero/veero%20-%20billboard%20-%2002.png"><img src="assets/images/Veero/veero%20-%20billboard%20-%2002.png" loading="lazy"/><span class="thumb-num">02</span></div>
+      <div class="thumb wide" data-src="assets/images/Veero/veero%20-%20billboard%20-%2003.png"><img src="assets/images/Veero/veero%20-%20billboard%20-%2003.png" loading="lazy"/><span class="thumb-num">03</span></div>
+      <div class="thumb wide" data-src="assets/images/Veero/veero%20-%20billboard%20-%2004.png"><img src="assets/images/Veero/veero%20-%20billboard%20-%2004.png" loading="lazy"/><span class="thumb-num">04</span></div>
+      <div class="thumb wide" data-src="assets/images/Veero/veero%20-%20billboard%20-%2005.png"><img src="assets/images/Veero/veero%20-%20billboard%20-%2005.png" loading="lazy"/><span class="thumb-num">05</span></div>
+    </div>
+  </div>
+
+  <!-- BRAND ASSETS -->
+  <div class="cat-block reveal">
+    <div class="cat-header">
+      <h3 class="cat-title">Brand Assets</h3>
+      <p class="cat-desc">Core identity elements and brand-system references for Veero. These assets document the graphic language behind the packaging, campaigns, and presentation layouts.</p>
+    </div>
+    <div class="thumb-grid" data-cat="brand-assets">
+      <div class="thumb sq" data-src="assets/images/Veero/veero%20-%20brand%20assets%20-%2001.png"><img src="assets/images/Veero/veero%20-%20brand%20assets%20-%2001.png" loading="lazy"/><span class="thumb-num">01</span></div>
+      <div class="thumb sq" data-src="assets/images/Veero/veero%20-%20brand%20assets%20-%2002.png"><img src="assets/images/Veero/veero%20-%20brand%20assets%20-%2002.png" loading="lazy"/><span class="thumb-num">02</span></div>
+      <div class="thumb sq" data-src="assets/images/Veero/veero%20-%20brand%20assets%20-%2003.png"><img src="assets/images/Veero/veero%20-%20brand%20assets%20-%2003.png" loading="lazy"/><span class="thumb-num">03</span></div>
     </div>
   </div>
 </section>
