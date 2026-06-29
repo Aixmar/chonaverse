@@ -51,6 +51,15 @@
     .meta-val{font-size:.85rem;color:var(--white);font-weight:500}
     @keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
+    /* STRIP */
+    .strip{background:#120a08;padding:2.5rem 0;overflow:hidden;border-top:1px solid rgba(196,137,122,.12);border-bottom:1px solid rgba(196,137,122,.12)}
+    .strip-track{display:flex;gap:1rem;width:max-content;animation:scrollx 36s linear infinite}
+    .strip-track:hover{animation-play-state:paused}
+    .strip-item{flex-shrink:0;width:200px;height:150px;overflow:hidden;border:1px solid rgba(196,137,122,.1)}
+    .strip-item img{width:100%;height:100%;object-fit:cover;filter:brightness(.86);transition:filter .3s}
+    .strip-item:hover img{filter:brightness(1)}
+    @keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
     /* SHARED */
     section{padding:6rem 4rem}
     .label{font-size:.68rem;letter-spacing:.35em;text-transform:uppercase;color:var(--rose);margin-bottom:2.5rem;display:flex;align-items:center;gap:1rem}
@@ -168,6 +177,23 @@
     </div>
   </div>
 </section>
+
+<div class="strip">
+  <div class="strip-track">
+    <div class="strip-item"><img src="assets/images/Veero/veero%20-%20packaging%20-%2005.png" loading="lazy"/></div>
+    <div class="strip-item"><img src="assets/images/Veero/veero%20-%20packaging%20-%2008.png" loading="lazy"/></div>
+    <div class="strip-item"><img src="assets/images/Veero/veero%20-%20packaging%20-%2010.png" loading="lazy"/></div>
+    <div class="strip-item"><img src="assets/images/Veero/veero%20-%20banner%20-%2001.png" loading="lazy"/></div>
+    <div class="strip-item"><img src="assets/images/Veero/veero%20-%20banner%20-%2004.png" loading="lazy"/></div>
+    <div class="strip-item"><img src="assets/images/Veero/veero%20-%20banner%20-%2008.png" loading="lazy"/></div>
+    <div class="strip-item"><img src="assets/images/Veero/veero%20-%20banner%20-%2012.png" loading="lazy"/></div>
+    <div class="strip-item"><img src="assets/images/Veero/veero%20-%20billboard%20-%2001.png" loading="lazy"/></div>
+    <div class="strip-item"><img src="assets/images/Veero/veero%20-%20billboard%20-%2003.png" loading="lazy"/></div>
+    <div class="strip-item"><img src="assets/images/Veero/veero%20-%20brand%20assets%20-%2001.png" loading="lazy"/></div>
+    <div class="strip-item"><img src="assets/images/Veero/veero%20-%20brand%20assets%20-%2002.png" loading="lazy"/></div>
+    <div class="strip-item"><img src="assets/images/Veero/veero%20-%20brand%20assets%20-%2003.png" loading="lazy"/></div>
+  </div>
+</div>
 
 <!-- BRIEF -->
 <section id="coming">
